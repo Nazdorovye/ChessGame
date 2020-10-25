@@ -21,6 +21,10 @@ Apache Maven is used as build tool.
   2. OpenJDK 11 zip (GPLv2 license) [LINK](http://jdk.java.net/archive/)
   * [TUTORIAL](https://java.tutorials24x7.com/blog/how-to-install-java-14-on-windows) on correct setup 
 
+# Maven (Windows)
+
+Download, install & configure Maven [TUTORIAL](https://mkyong.com/maven/how-to-install-maven-in-windows/)
+
 # VS Code
 
 Install ```'Java Extension Pack'```: 
@@ -35,6 +39,3 @@ Set ```java.home``` variable:
 * Type in search bar ```java home```
 * Click on 'Edit in settings.json' -> settings.json will open
 * Add or edit: ```"java.home": "path/to/java11", ``` where java path is absolute, i.e. ```"C:\Program files\Java\Java-14-openjdk\"```
-
-# Eclipse
-

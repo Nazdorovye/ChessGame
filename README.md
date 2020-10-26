@@ -19,7 +19,7 @@ Apache Maven is used as build tool.
 * Download & install JDK 11 (one of two):
   1. OracleJDK 11 bin (Proprietary for commercial use) [LINK](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
   2. OpenJDK 11 zip (GPLv2 license) [LINK](http://jdk.java.net/archive/)
-  * [TUTORIAL](https://java.tutorials24x7.com/blog/how-to-install-java-14-on-windows) on correct setup 
+  * [TUTORIAL](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk) on correct setup 
 
 # Maven (Windows)
 

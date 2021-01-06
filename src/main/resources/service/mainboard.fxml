@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.Main">
+   <children>
+      <HBox fx:id="aspect" alignment="CENTER_LEFT" prefHeight="720.0" prefWidth="1280.0" />
+      <Pane prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <VBox fx:id="fullBoard" layoutX="20.0" layoutY="20.0" prefHeight="680.0" prefWidth="680.0" style="-fx-background-color: #754a1f;">
+               <children>
+                  <HBox fx:id="charTop" alignment="CENTER" prefHeight="30.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="77.5" text="A" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="311.0" layoutY="10.0" prefWidth="77.5" text="B" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="350.0" layoutY="10.0" prefWidth="77.5" text="C" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="389.0" layoutY="10.0" prefWidth="77.5" text="D" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="428.0" layoutY="10.0" prefWidth="77.5" text="E" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="467.0" layoutY="10.0" prefWidth="77.5" text="F" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="506.0" layoutY="10.0" prefWidth="77.5" text="G" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="545.0" layoutY="10.0" prefWidth="77.5" text="H" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="620.0">
+                     <children>
+                        <VBox fx:id="nrLeft" alignment="CENTER" prefWidth="30.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="515.0" prefHeight="77.5" text="8" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="476.0" prefHeight="77.5" text="7" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="437.0" prefHeight="77.5" text="6" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="398.0" prefHeight="77.5" text="5" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="359.0" prefHeight="77.5" text="4" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="320.0" prefHeight="77.5" text="3" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="281.0" prefHeight="77.5" text="2" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="1" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <GridPane fx:id="board" gridLinesVisible="true" prefHeight="620.0" prefWidth="620.0">
+                           <columnConstraints>
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" />
+                           </rowConstraints>
+                           <children>
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="2" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="4" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="6" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <children>
+                                    <Pane layoutY="538.0" style="-fx-background-color: #D18B47;" />
+                                 </children>
+                              </Pane>
+                              <Pane style="-fx-background-color: #FFCE9E;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="3" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="7" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="5" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.rowIndex="1" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="1" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.rowIndex="3" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+                              <Pane style="-fx-background-color: #D18B47;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                              <Pane style="-fx-background-color: #FFCE9E;" />
+                              <Pane layoutX="10.0" layoutY="241.0" style="-fx-background-color: #D18B47;" GridPane.rowIndex="7" />
+                              <ImageView fx:id="rookWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_rlt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="knightWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_nlt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="bishopWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_bdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="kingW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_qlt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="queenW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_klt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="bishopWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_bdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="knightWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_nlt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="rookWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@Chess_rlt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWA" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWC" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWD" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWE" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWF" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWG" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnWH" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6">
+                                 <image>
+                                    <Image url="@Chess_plt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="rookBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Chess_rdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="knightBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                 <image>
+                                    <Image url="@Chess_ndt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="bishopBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                 <image>
+                                    <Image url="@Chess_bdt60%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="kingB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                 <image>
+                                    <Image url="@Chess_qdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="queenB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                 <image>
+                                    <Image url="@Chess_kdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="bishopBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+                                 <image>
+                                    <Image url="@Chess_bdt60%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="knightBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+                                 <image>
+                                    <Image url="@Chess_ndt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="rookBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
+                                 <image>
+                                    <Image url="@Chess_rdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBA" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBC" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBD" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBE" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBF" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBG" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="pawnBH" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@Chess_pdt60.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                        <VBox fx:id="nrRight" alignment="CENTER" prefWidth="30.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="77.5" text="8" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="7" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="6" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="5" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="4" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="3" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="2" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="77.5" text="1" textFill="#f8f7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="charBottom" alignment="CENTER" prefHeight="30.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="77.5" text="A" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="77.5" text="B" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="77.5" text="C" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="77.5" text="D" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="77.5" text="E" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="77.5" text="F" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="77.5" text="G" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="77.5" text="H" textFill="#fcfcfc">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</Pane>

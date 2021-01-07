@@ -144,8 +144,9 @@ public class mainBoardCtrl {
     right6.prefHeightProperty().bind(left1.prefHeightProperty());
     right7.prefHeightProperty().bind(left1.prefHeightProperty());
     right8.prefHeightProperty().bind(left1.prefHeightProperty());
-    
-  
 
+    RootResizeListener listener = new RootResizeListener(root, aspect);
+    root.widthProperty().addListener(listener);
+    root.heightProperty().addListener(listener);
   }
 }

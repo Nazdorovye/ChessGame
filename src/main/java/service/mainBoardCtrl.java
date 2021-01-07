@@ -108,5 +108,44 @@ public class mainBoardCtrl {
 
     board.prefHeightProperty().bind(boardMid.prefHeightProperty());
     board.prefWidthProperty().bind(board.prefHeightProperty());
+
+    topA.prefWidthProperty().bind(aspect.prefHeightProperty().multiply(0.10763889));
+    topB.prefWidthProperty().bind(topA.prefWidthProperty());
+    topC.prefWidthProperty().bind(topA.prefWidthProperty());
+    topD.prefWidthProperty().bind(topA.prefWidthProperty());
+    topE.prefWidthProperty().bind(topA.prefWidthProperty());
+    topF.prefWidthProperty().bind(topA.prefWidthProperty());
+    topG.prefWidthProperty().bind(topA.prefWidthProperty());
+    topH.prefWidthProperty().bind(topA.prefWidthProperty());
+
+    bottomA.prefWidthProperty().bind(topA.prefWidthProperty());
+    bottomB.prefWidthProperty().bind(topA.prefWidthProperty());
+    bottomC.prefWidthProperty().bind(topA.prefWidthProperty());
+    bottomD.prefWidthProperty().bind(topA.prefWidthProperty());
+    bottomE.prefWidthProperty().bind(topA.prefWidthProperty());
+    bottomF.prefWidthProperty().bind(topA.prefWidthProperty());
+    bottomG.prefWidthProperty().bind(topA.prefWidthProperty());
+    bottomH.prefWidthProperty().bind(topA.prefWidthProperty());
+
+    left1.prefHeightProperty().bind(aspect.prefHeightProperty().multiply(0.10763889));
+    left2.prefHeightProperty().bind(left1.prefHeightProperty());
+    left3.prefHeightProperty().bind(left1.prefHeightProperty());
+    left4.prefHeightProperty().bind(left1.prefHeightProperty());
+    left5.prefHeightProperty().bind(left1.prefHeightProperty());
+    left6.prefHeightProperty().bind(left1.prefHeightProperty());
+    left7.prefHeightProperty().bind(left1.prefHeightProperty());
+    left8.prefHeightProperty().bind(left1.prefHeightProperty());
+
+    right1.prefHeightProperty().bind(left1.prefHeightProperty());
+    right2.prefHeightProperty().bind(left1.prefHeightProperty());
+    right3.prefHeightProperty().bind(left1.prefHeightProperty());
+    right4.prefHeightProperty().bind(left1.prefHeightProperty());
+    right5.prefHeightProperty().bind(left1.prefHeightProperty());
+    right6.prefHeightProperty().bind(left1.prefHeightProperty());
+    right7.prefHeightProperty().bind(left1.prefHeightProperty());
+    right8.prefHeightProperty().bind(left1.prefHeightProperty());
+    
+  
+
   }
 }

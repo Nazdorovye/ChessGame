@@ -19,42 +19,42 @@
                <children>
                   <HBox fx:id="charTop" alignment="CENTER" prefHeight="30.0">
                      <children>
-                        <Label alignment="CENTER" prefWidth="77.5" text="A" textFill="#fcfcfc">
+                        <Label fx:id="topA" alignment="CENTER" prefWidth="77.5" text="A" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="311.0" layoutY="10.0" prefWidth="77.5" text="B" textFill="#fcfcfc">
+                        <Label fx:id="topB" alignment="CENTER" layoutX="311.0" layoutY="10.0" prefWidth="77.5" text="B" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="350.0" layoutY="10.0" prefWidth="77.5" text="C" textFill="#fcfcfc">
+                        <Label fx:id="topC" alignment="CENTER" layoutX="350.0" layoutY="10.0" prefWidth="77.5" text="C" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="389.0" layoutY="10.0" prefWidth="77.5" text="D" textFill="#fcfcfc">
+                        <Label fx:id="topD" alignment="CENTER" layoutX="389.0" layoutY="10.0" prefWidth="77.5" text="D" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="428.0" layoutY="10.0" prefWidth="77.5" text="E" textFill="#fcfcfc">
+                        <Label fx:id="topE" alignment="CENTER" layoutX="428.0" layoutY="10.0" prefWidth="77.5" text="E" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="467.0" layoutY="10.0" prefWidth="77.5" text="F" textFill="#fcfcfc">
+                        <Label fx:id="topF" alignment="CENTER" layoutX="467.0" layoutY="10.0" prefWidth="77.5" text="F" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="506.0" layoutY="10.0" prefWidth="77.5" text="G" textFill="#fcfcfc">
+                        <Label fx:id="topG" alignment="CENTER" layoutX="506.0" layoutY="10.0" prefWidth="77.5" text="G" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="545.0" layoutY="10.0" prefWidth="77.5" text="H" textFill="#fcfcfc">
+                        <Label fx:id="topH" alignment="CENTER" layoutX="545.0" layoutY="10.0" prefWidth="77.5" text="H" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -65,42 +65,42 @@
                      <children>
                         <VBox fx:id="nrLeft" alignment="CENTER" prefWidth="30.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="20.0" layoutY="515.0" prefHeight="77.5" text="8" textFill="#f8f7f7">
+                              <Label fx:id="left8" alignment="CENTER" layoutX="20.0" layoutY="515.0" prefHeight="77.5" text="8" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="20.0" layoutY="476.0" prefHeight="77.5" text="7" textFill="#f8f7f7">
+                              <Label fx:id="left7" alignment="CENTER" layoutX="20.0" layoutY="476.0" prefHeight="77.5" text="7" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="20.0" layoutY="437.0" prefHeight="77.5" text="6" textFill="#f8f7f7">
+                              <Label fx:id="left6" alignment="CENTER" layoutX="20.0" layoutY="437.0" prefHeight="77.5" text="6" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="20.0" layoutY="398.0" prefHeight="77.5" text="5" textFill="#f8f7f7">
+                              <Label fx:id="left5" alignment="CENTER" layoutX="20.0" layoutY="398.0" prefHeight="77.5" text="5" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="20.0" layoutY="359.0" prefHeight="77.5" text="4" textFill="#f8f7f7">
+                              <Label fx:id="left4" alignment="CENTER" layoutX="20.0" layoutY="359.0" prefHeight="77.5" text="4" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="20.0" layoutY="320.0" prefHeight="77.5" text="3" textFill="#f8f7f7">
+                              <Label fx:id="left3" alignment="CENTER" layoutX="20.0" layoutY="320.0" prefHeight="77.5" text="3" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="20.0" layoutY="281.0" prefHeight="77.5" text="2" textFill="#f8f7f7">
+                              <Label fx:id="left2" alignment="CENTER" layoutX="20.0" layoutY="281.0" prefHeight="77.5" text="2" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="1" textFill="#f8f7f7">
+                              <Label fx:id="left1" alignment="CENTER" prefHeight="77.5" text="1" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -361,42 +361,42 @@
                         </GridPane>
                         <VBox fx:id="nrRight" alignment="CENTER" prefWidth="30.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="77.5" text="8" textFill="#f8f7f7">
+                              <Label fx:id="right8" alignment="CENTER" prefHeight="77.5" text="8" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="7" textFill="#f8f7f7">
+                              <Label fx:id="right7" alignment="CENTER" prefHeight="77.5" text="7" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="6" textFill="#f8f7f7">
+                              <Label fx:id="right6" alignment="CENTER" prefHeight="77.5" text="6" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="5" textFill="#f8f7f7">
+                              <Label fx:id="right5" alignment="CENTER" prefHeight="77.5" text="5" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="4" textFill="#f8f7f7">
+                              <Label fx:id="right4" alignment="CENTER" prefHeight="77.5" text="4" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="3" textFill="#f8f7f7">
+                              <Label fx:id="right3" alignment="CENTER" prefHeight="77.5" text="3" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="2" textFill="#f8f7f7">
+                              <Label fx:id="right2" alignment="CENTER" prefHeight="77.5" text="2" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="77.5" text="1" textFill="#f8f7f7">
+                              <Label fx:id="right1" alignment="CENTER" prefHeight="77.5" text="1" textFill="#f8f7f7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -407,42 +407,42 @@
                   </HBox>
                   <HBox fx:id="charBottom" alignment="CENTER" prefHeight="30.0">
                      <children>
-                        <Label alignment="CENTER" prefWidth="77.5" text="A" textFill="#fcfcfc">
+                        <Label fx:id="bottomA" alignment="CENTER" prefWidth="77.5" text="A" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefWidth="77.5" text="B" textFill="#fcfcfc">
+                        <Label fx:id="bottomB" alignment="CENTER" prefWidth="77.5" text="B" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefWidth="77.5" text="C" textFill="#fcfcfc">
+                        <Label fx:id="bottomC" alignment="CENTER" prefWidth="77.5" text="C" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefWidth="77.5" text="D" textFill="#fcfcfc">
+                        <Label fx:id="bottomD" alignment="CENTER" prefWidth="77.5" text="D" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefWidth="77.5" text="E" textFill="#fcfcfc">
+                        <Label fx:id="bottomE" alignment="CENTER" prefWidth="77.5" text="E" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefWidth="77.5" text="F" textFill="#fcfcfc">
+                        <Label fx:id="bottomF" alignment="CENTER" prefWidth="77.5" text="F" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefWidth="77.5" text="G" textFill="#fcfcfc">
+                        <Label fx:id="bottomG" alignment="CENTER" prefWidth="77.5" text="G" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefWidth="77.5" text="H" textFill="#fcfcfc">
+                        <Label fx:id="bottomH" alignment="CENTER" prefWidth="77.5" text="H" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
                            </font>

@@ -3,6 +3,7 @@ package service;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -48,6 +49,7 @@ public class MainBoardCtrl {
   @FXML private ImageView pawnBG;
   @FXML private ImageView pawnBH;
 
+  @FXML private AnchorPane utilPane;
   @FXML private Pane root;
   @FXML private Pane aspect;
   @FXML private HBox charTop;
@@ -56,6 +58,7 @@ public class MainBoardCtrl {
   @FXML private VBox nrLeft;
   @FXML private VBox nrRight;
   @FXML private VBox fullBoard;
+  @FXML private VBox takenVBox;
   @FXML private GridPane board;
 
   @FXML private Label topA;
@@ -94,6 +97,7 @@ public class MainBoardCtrl {
   @FXML private Label right7;
   @FXML private Label right8;
 
+
   @FXML private void initialize() {
     fullBoard.prefHeightProperty().bind(aspect.heightProperty().subtract(40));
     fullBoard.prefWidthProperty().bind(fullBoard.heightProperty());
@@ -102,15 +106,26 @@ public class MainBoardCtrl {
     charBottom.prefHeightProperty().bind(charTop.heightProperty());
 
     boardMid.prefHeightProperty().bind(aspect.heightProperty().multiply(0.91176470588));
+    boardMid.prefWidthProperty().bind(boardMid.heightProperty());
 
     nrLeft.prefWidthProperty().bind(charTop.heightProperty());
     nrRight.prefWidthProperty().bind(charTop.heightProperty());
 
-    board.prefHeightProperty().bind(boardMid.heightProperty());
+    board.prefHeightProperty().bind(aspect.heightProperty().multiply(0.88888888889));
     board.prefWidthProperty().bind(board.heightProperty());
 
     topA.prefWidthProperty().bind(
         charTop.widthProperty().subtract(nrLeft.widthProperty().multiply(2)).divide(8));
+
+    takenVBox.layoutXProperty().bind(fullBoard.widthProperty().add(30));
+    takenVBox.prefHeightProperty().bind(fullBoard.heightProperty());
+    takenVBox.prefWidthProperty().bind(takenVBox.heightProperty().divide(30).add(10));
+
+    utilPane.layoutXProperty().bind(
+        fullBoard.widthProperty().add(takenVBox.widthProperty()).add(50));
+    utilPane.prefHeightProperty().bind(fullBoard.heightProperty());
+    utilPane.prefWidthProperty().bind(
+        aspect.widthProperty().subtract(utilPane.layoutXProperty().add(20)));
 
     topB.prefWidthProperty().bind(topA.widthProperty());
     topC.prefWidthProperty().bind(topA.widthProperty());
@@ -147,77 +162,192 @@ public class MainBoardCtrl {
     right7.prefHeightProperty().bind(topA.widthProperty());
     right8.prefHeightProperty().bind(topA.widthProperty());
 
-    rookWR.fitWidthProperty().bind(topA.widthProperty());
-    rookWR.fitHeightProperty().bind(topA.widthProperty());
-    rookWL.fitWidthProperty().bind(topA.widthProperty());
-    rookWL.fitHeightProperty().bind(topA.widthProperty());
-    rookBR.fitWidthProperty().bind(topA.widthProperty());
-    rookBR.fitHeightProperty().bind(topA.widthProperty());
-    rookBL.fitWidthProperty().bind(topA.widthProperty());
-    rookBL.fitHeightProperty().bind(topA.widthProperty());
-
-    bishopWR.fitWidthProperty().bind(topA.widthProperty());
-    bishopWR.fitHeightProperty().bind(topA.widthProperty());
-    bishopWL.fitWidthProperty().bind(topA.widthProperty());
-    bishopWL.fitHeightProperty().bind(topA.widthProperty());
-    bishopBR.fitWidthProperty().bind(topA.widthProperty());
-    bishopBR.fitHeightProperty().bind(topA.widthProperty());    
-    bishopBL.fitWidthProperty().bind(topA.widthProperty());
-    bishopBL.fitHeightProperty().bind(topA.widthProperty());
-
-    knightWR.fitWidthProperty().bind(topA.widthProperty());
-    knightWR.fitHeightProperty().bind(topA.widthProperty());
-    knightWL.fitWidthProperty().bind(topA.widthProperty());
-    knightWL.fitHeightProperty().bind(topA.widthProperty());
-    knightBR.fitWidthProperty().bind(topA.widthProperty());
-    knightBR.fitHeightProperty().bind(topA.widthProperty());    
-    knightBL.fitWidthProperty().bind(topA.widthProperty());
-    knightBL.fitHeightProperty().bind(topA.widthProperty());
-
-    kingW.fitWidthProperty().bind(topA.widthProperty());
-    kingW.fitHeightProperty().bind(topA.widthProperty());
-    kingB.fitWidthProperty().bind(topA.widthProperty());
-    kingB.fitHeightProperty().bind(topA.widthProperty());
-
-    queenW.fitWidthProperty().bind(topA.widthProperty());
-    queenW.fitHeightProperty().bind(topA.widthProperty());
-    queenB.fitWidthProperty().bind(topA.widthProperty());
-    queenB.fitHeightProperty().bind(topA.widthProperty());
-
-    pawnWA.fitWidthProperty().bind(topA.widthProperty());
-    pawnWA.fitHeightProperty().bind(topA.widthProperty());
-    pawnWB.fitWidthProperty().bind(topA.widthProperty());
-    pawnWB.fitHeightProperty().bind(topA.widthProperty());
-    pawnWC.fitWidthProperty().bind(topA.widthProperty());
-    pawnWC.fitHeightProperty().bind(topA.widthProperty());
-    pawnWD.fitWidthProperty().bind(topA.widthProperty());
-    pawnWD.fitHeightProperty().bind(topA.widthProperty());
-    pawnWE.fitWidthProperty().bind(topA.widthProperty());
-    pawnWE.fitHeightProperty().bind(topA.widthProperty());
-    pawnWF.fitWidthProperty().bind(topA.widthProperty());
-    pawnWF.fitHeightProperty().bind(topA.widthProperty());
-    pawnWG.fitWidthProperty().bind(topA.widthProperty());
-    pawnWG.fitHeightProperty().bind(topA.widthProperty());
-    pawnWH.fitWidthProperty().bind(topA.widthProperty());
-    pawnWH.fitHeightProperty().bind(topA.widthProperty());
-
-    pawnBA.fitWidthProperty().bind(topA.widthProperty());
-    pawnBA.fitHeightProperty().bind(topA.widthProperty());
-    pawnBB.fitWidthProperty().bind(topA.widthProperty());
-    pawnBB.fitHeightProperty().bind(topA.widthProperty());
-    pawnBC.fitWidthProperty().bind(topA.widthProperty());
-    pawnBC.fitHeightProperty().bind(topA.widthProperty());
-    pawnBD.fitWidthProperty().bind(topA.widthProperty());
-    pawnBD.fitHeightProperty().bind(topA.widthProperty());
-    pawnBE.fitWidthProperty().bind(topA.widthProperty());
-    pawnBE.fitHeightProperty().bind(topA.widthProperty());
-    pawnBF.fitWidthProperty().bind(topA.widthProperty());
-    pawnBF.fitHeightProperty().bind(topA.widthProperty());
-    pawnBG.fitWidthProperty().bind(topA.widthProperty());
-    pawnBG.fitHeightProperty().bind(topA.widthProperty());
-    pawnBH.fitWidthProperty().bind(topA.widthProperty());
-    pawnBH.fitHeightProperty().bind(topA.widthProperty());
+    // piece indices and size bindings are set in Board constructor
   }
 
+  /* =============== PIECE SIZE BINDINGS ======================================================== */
+  public void pieceSizeBindBoard(ImageView piece) {
+    piece.fitWidthProperty().bind(topA.widthProperty());
+    piece.fitHeightProperty().bind(topA.widthProperty());
+  }
+
+  public void allPieceSizeBindBoard() {
+    pieceSizeBindBoard(rookWR);
+    pieceSizeBindBoard(rookWL);
+    pieceSizeBindBoard(rookBR);
+    pieceSizeBindBoard(rookBL);
+
+    pieceSizeBindBoard(knightWR);
+    pieceSizeBindBoard(knightWL);
+    pieceSizeBindBoard(knightBR);
+    pieceSizeBindBoard(knightBL);
+
+    pieceSizeBindBoard(bishopWR);
+    pieceSizeBindBoard(bishopWL);
+    pieceSizeBindBoard(bishopBR);
+    pieceSizeBindBoard(bishopBL);
+
+    pieceSizeBindBoard(queenW);
+    pieceSizeBindBoard(queenB); 
+
+    pieceSizeBindBoard(kingW);
+    pieceSizeBindBoard(kingB);
+
+    pieceSizeBindBoard(pawnWA);
+    pieceSizeBindBoard(pawnWB);
+    pieceSizeBindBoard(pawnWC);
+    pieceSizeBindBoard(pawnWD);
+    pieceSizeBindBoard(pawnWE);
+    pieceSizeBindBoard(pawnWF);
+    pieceSizeBindBoard(pawnWG);
+    pieceSizeBindBoard(pawnWH);
+
+    pieceSizeBindBoard(pawnBA);
+    pieceSizeBindBoard(pawnBB);
+    pieceSizeBindBoard(pawnBC);
+    pieceSizeBindBoard(pawnBD);
+    pieceSizeBindBoard(pawnBE);
+    pieceSizeBindBoard(pawnBF);
+    pieceSizeBindBoard(pawnBG);
+    pieceSizeBindBoard(pawnBH);
+  }
+
+  public void pieceSizeBindTaken(ImageView piece) {
+    piece.fitWidthProperty().bind(takenVBox.widthProperty().subtract(10));
+    piece.fitHeightProperty().bind(piece.fitHeightProperty());
+  }
+
+  public void allPieceSizeBindTaken() {
+    pieceSizeBindTaken(rookWR);
+    pieceSizeBindTaken(rookWL);
+    pieceSizeBindTaken(rookBR);
+    pieceSizeBindTaken(rookBL);
+
+    pieceSizeBindTaken(knightWR);
+    pieceSizeBindTaken(knightWL);
+    pieceSizeBindTaken(knightBR);
+    pieceSizeBindTaken(knightBL);
+
+    pieceSizeBindTaken(bishopWR);
+    pieceSizeBindTaken(bishopWL);
+    pieceSizeBindTaken(bishopBR);
+    pieceSizeBindTaken(bishopBL);
+
+    pieceSizeBindTaken(queenW);
+    pieceSizeBindTaken(queenB); 
+
+    pieceSizeBindTaken(kingW);
+    pieceSizeBindTaken(kingB);
+
+    pieceSizeBindTaken(pawnWA);
+    pieceSizeBindTaken(pawnWB);
+    pieceSizeBindTaken(pawnWC);
+    pieceSizeBindTaken(pawnWD);
+    pieceSizeBindTaken(pawnWE);
+    pieceSizeBindTaken(pawnWF);
+    pieceSizeBindTaken(pawnWG);
+    pieceSizeBindTaken(pawnWH);
+
+    pieceSizeBindTaken(pawnBA);
+    pieceSizeBindTaken(pawnBB);
+    pieceSizeBindTaken(pawnBC);
+    pieceSizeBindTaken(pawnBD);
+    pieceSizeBindTaken(pawnBE);
+    pieceSizeBindTaken(pawnBF);
+    pieceSizeBindTaken(pawnBG);
+    pieceSizeBindTaken(pawnBH);
+  }
+  /* ============== END PIECE SIZE BINDINGS ===================================================== */
+
+  public void resetPieceIndices() {
+    allPieceSizeBindBoard();
+
+    GridPane.setConstraints(rookWR, 7, 7);
+    GridPane.setConstraints(rookWL, 0, 7);
+    GridPane.setConstraints(rookBR, 7, 0);
+    GridPane.setConstraints(rookBL, 0, 0);
+
+    GridPane.setConstraints(knightWR, 6, 7);
+    GridPane.setConstraints(knightWL, 1, 7);
+    GridPane.setConstraints(knightBR, 6, 0);
+    GridPane.setConstraints(knightBL, 1, 0);
+
+    GridPane.setConstraints(bishopWR,  5,  7);
+    GridPane.setConstraints(bishopWL,  2,  7);
+    GridPane.setConstraints(bishopBR,  5,  0);
+    GridPane.setConstraints(bishopBL,  2,  0);
+
+    GridPane.setConstraints(queenW, 3, 7);
+    GridPane.setConstraints(queenB, 3, 0);
+
+    GridPane.setConstraints(kingW, 4, 7);
+    GridPane.setConstraints(kingB, 4, 0);
+
+    GridPane.setConstraints(pawnWA, 0, 6);
+    GridPane.setConstraints(pawnWB, 1, 6);
+    GridPane.setConstraints(pawnWC, 2, 6);
+    GridPane.setConstraints(pawnWD, 3, 6);
+    GridPane.setConstraints(pawnWE, 4, 6);
+    GridPane.setConstraints(pawnWF, 5, 6);
+    GridPane.setConstraints(pawnWG, 6, 6);
+    GridPane.setConstraints(pawnWH, 7, 6);
+
+    GridPane.setConstraints(pawnBA, 0, 1);
+    GridPane.setConstraints(pawnBB, 1, 1);
+    GridPane.setConstraints(pawnBC, 2, 1);
+    GridPane.setConstraints(pawnBD, 3, 1);
+    GridPane.setConstraints(pawnBE, 4, 1);
+    GridPane.setConstraints(pawnBF, 5, 1);
+    GridPane.setConstraints(pawnBG, 6, 1);
+    GridPane.setConstraints(pawnBH, 7, 1);
+  }
+
+  public void setPieceIndex(ImageView piece, int x, int y) {
+    GridPane.setColumnIndex(piece, x);
+    GridPane.setRowIndex(piece, y);
+  }
+
+  /* ================= GETTERS ================================================================== */
   public Pane getAspectPane() { return aspect; }
+  public Pane getUtilPane() { return utilPane; }
+
+  public ImageView getRookWR() { return rookWR; }
+  public ImageView getRookWL() { return rookWL; }
+  public ImageView getRookBR() { return rookBR; }
+  public ImageView getRookBL() { return rookBL; }
+
+  public ImageView getKnightWR() { return knightWR; }
+  public ImageView getKnightWL() { return knightWL; }
+  public ImageView getKnightBR() { return knightBR; }
+  public ImageView getKnightBL() { return knightBL; }
+
+  public ImageView getBishopWR() { return bishopWR; }
+  public ImageView getBishopWL() { return bishopWL; }
+  public ImageView getBishopBR() { return bishopBR; }
+  public ImageView getBishopBL() { return bishopBL; }
+  
+  public ImageView getQueenW() { return queenW; }
+  public ImageView getQueenB() { return queenB; }
+
+  public ImageView getKingW() { return kingW; }
+  public ImageView getKingB() { return kingB; }
+
+  public ImageView getPawnWA() { return pawnWA; }
+  public ImageView getPawnWB() { return pawnWB; }
+  public ImageView getPawnWC() { return pawnWC; }
+  public ImageView getPawnWD() { return pawnWD; }
+  public ImageView getPawnWE() { return pawnWE; }
+  public ImageView getPawnWF() { return pawnWF; }
+  public ImageView getPawnWG() { return pawnWG; }
+  public ImageView getPawnWH() { return pawnWH; }
+
+  public ImageView getPawnBA() { return pawnBA; }
+  public ImageView getPawnBB() { return pawnBB; }
+  public ImageView getPawnBC() { return pawnBC; }
+  public ImageView getPawnBD() { return pawnBD; }
+  public ImageView getPawnBE() { return pawnBE; }
+  public ImageView getPawnBF() { return pawnBF; }
+  public ImageView getPawnBG() { return pawnBG; }
+  public ImageView getPawnBH() { return pawnBH; }
+  /* =============== END GETTERS ================================================================ */
 }

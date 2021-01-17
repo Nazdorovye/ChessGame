@@ -7,11 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-  private static Parent loadFXML(String filename) {
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(filename + ".fxml"));
+  private static MainBoardCtrl boardCtrl;
+
+  private Parent loadFXML(String filename) {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(filename + ".fxml"));
 
     try {
-      return fxmlLoader.load();
+      Parent result = loader.load();
+      boardCtrl = (MainBoardCtrl)loader.getController();      
+      return result;
     } catch(Exception e) {
       System.out.print(e.getMessage());
       return null;
@@ -26,6 +30,13 @@ public class Main extends Application {
     }
 
     stage.setScene(scene);
+    stage.minHeightProperty().set(480.);
+    stage.minWidthProperty().set(854.);
+
+    RootResizeListener listener = new RootResizeListener(scene, boardCtrl.getAspectPane(), 16. / 9);
+    scene.widthProperty().addListener(listener);
+    scene.heightProperty().addListener(listener);
+
     stage.show();
   }
 

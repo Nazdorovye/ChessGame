@@ -6,25 +6,30 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 public class RootResizeListener implements ChangeListener<Number> {
-  public final Pane scene;
-  public final Pane aspect;
+  public final Scene scene;
+  public final Pane content;
+  public final double aRatio;
 
   @Override 
   public void changed(ObservableValue<? extends Number> value, Number oldVal, Number newVal) {
     final double w = scene.getWidth();
     final double h = scene.getHeight();
 
-    if (w > h * 0.5625) {
-      aspect.setPrefHeight(h);
-      aspect.setPrefWidth(h * 1.77777777778);
+    if (w < h * aRatio) {
+      content.setPrefWidth(w);
+      content.setPrefHeight(w / aRatio);
     } else {
-      aspect.setPrefWidth(w);
-      aspect.setPrefHeight(w * 0.5625);
+      content.setPrefWidth(h * aRatio);
+      content.setPrefHeight(h);
     }
+
+    content.setLayoutX((w - content.getPrefWidth()) / 2);
+    content.setLayoutY((h - content.getPrefHeight()) / 2);
   }
 
-  public RootResizeListener(Pane scene, Pane aspect) {
+  public RootResizeListener(Scene scene, Pane content, double aRatio) {
     this.scene = scene;
-    this.aspect = aspect;
+    this.content = content;
+    this.aRatio = aRatio;
   }
 }

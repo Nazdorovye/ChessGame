@@ -1,0 +1,37 @@
+
+/*******************************************************************************
+ *                                                                             *
+ * TabPane                                                                     *
+ *                                                                             *
+ ******************************************************************************/
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+  -fx-alignment: CENTER;
+  -fx-text-fill: #FFFFFF;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+  -fx-padding: 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:top {
+  -fx-background-color:  #D18B47;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+  -fx-background-color:  #754a1f;
+  -fx-background-insets: 0;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+  -fx-border-width: 0;
+  -fx-border-color: -fx-focus-color, -fx-faint-focus-color;
+  -fx-border-insets: 0;
+  -fx-border-radius: 0; /* looks sharper if outer border has a tighter radius (2 instead of 3) */
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+  -fx-background-color: transparent;
+  -fx-effect: null;
+}

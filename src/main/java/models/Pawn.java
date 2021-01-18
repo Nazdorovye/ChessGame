@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javafx.scene.image.ImageView;
 
 public class Pawn extends Piece {
-  public Pawn(ImageView pieceImage /*..*/) {
-    super(pieceImage /*..*/);
+  public Pawn(Board board, boolean white, ImageView pieceImage, int x, int y) {
+    super(board, white, pieceImage, x, y);
   }
 
   public void calcAvalableCells() {

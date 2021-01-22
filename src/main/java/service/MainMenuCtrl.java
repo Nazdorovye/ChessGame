@@ -1,14 +1,18 @@
 package service;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class MainMenuCtrl {
-  @FXML AnchorPane hotSeatPane;
-  @FXML Pane root;
-  @FXML TabPane tabPane;
+  @FXML private AnchorPane hotSeatPane;
+  @FXML private Pane root;
+  @FXML private TabPane tabPane;
+  @FXML private Button startHSBtn;
 
   @FXML private void initialize() {
     AnchorPane.setBottomAnchor(root, .0);
@@ -20,5 +24,9 @@ public class MainMenuCtrl {
     tabPane.prefHeightProperty().bind(root.heightProperty());
     tabPane.tabMinWidthProperty().bind(root.widthProperty().subtract(19).divide(3));
     tabPane.tabMaxWidthProperty().bind(tabPane.tabMinWidthProperty());
+  }
+
+  public void onStartHotSeatPressed(EventHandler<? super MouseEvent> value) {
+    startHSBtn.onMousePressedProperty().set(value);
   }
 }

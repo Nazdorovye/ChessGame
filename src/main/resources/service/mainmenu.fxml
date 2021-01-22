@@ -23,7 +23,7 @@
                                     <TextArea editable="false" prefHeight="78.0" prefWidth="408.0" text="  &#10;  A game for two players on this computer.&#10;  The players pass the turn to each other themselves.&#10;" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                  </children>
                               </AnchorPane>
-                              <Button mnemonicParsing="false" text="Start" />
+                              <Button fx:id="startHSBtn" mnemonicParsing="false" text="Start" />
                            </children>
                         </VBox>
                      </children>

@@ -5,4 +5,5 @@ module name {
 
   opens service to javafx.fxml;
   exports service;
+  exports models;
 }

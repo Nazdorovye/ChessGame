@@ -1,6 +1,9 @@
 package service;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +13,36 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class MainBoardCtrl {
+  private RootResizeListener rrl;
+
+  private class RootResizeListener implements ChangeListener<Number> {
+    public final Scene scene;
+    public final double aRatio;
+  
+    @Override 
+    public void changed(ObservableValue<? extends Number> value, Number oldVal, Number newVal) {
+      final double w = scene.getWidth();
+      final double h = scene.getHeight();
+  
+      if (w < h * aRatio) {
+        aspect.setPrefWidth(w);
+        aspect.setPrefHeight(w / aRatio);
+      } else {
+        aspect.setPrefWidth(h * aRatio);
+        aspect.setPrefHeight(h);
+      }
+  
+      aspect.setLayoutX((w - aspect.getPrefWidth()) / 2);
+      aspect.setLayoutY((h - aspect.getPrefHeight()) / 2);
+    }
+  
+    public RootResizeListener(Scene scene, double aRatio) {
+      this.scene = scene;
+      this.aRatio = aRatio;
+    }
+  }
+
+
   @FXML private ImageView rookWR;
   @FXML private ImageView rookWL;
   @FXML private ImageView rookBR;
@@ -97,6 +130,78 @@ public class MainBoardCtrl {
   @FXML private Label right7;
   @FXML private Label right8;
 
+  @FXML private Pane pn00;
+  @FXML private Pane pn01;
+  @FXML private Pane pn02;
+  @FXML private Pane pn03;
+  @FXML private Pane pn04;
+  @FXML private Pane pn05;
+  @FXML private Pane pn06;
+  @FXML private Pane pn07;
+
+  @FXML private Pane pn10;
+  @FXML private Pane pn11;
+  @FXML private Pane pn12;
+  @FXML private Pane pn13;
+  @FXML private Pane pn14;
+  @FXML private Pane pn15;
+  @FXML private Pane pn16;
+  @FXML private Pane pn17;
+
+  @FXML private Pane pn20;
+  @FXML private Pane pn21;
+  @FXML private Pane pn22;
+  @FXML private Pane pn23;
+  @FXML private Pane pn24;
+  @FXML private Pane pn25;
+  @FXML private Pane pn26;
+  @FXML private Pane pn27;
+
+  @FXML private Pane pn30;
+  @FXML private Pane pn31;
+  @FXML private Pane pn32;
+  @FXML private Pane pn33;
+  @FXML private Pane pn34;
+  @FXML private Pane pn35;
+  @FXML private Pane pn36;
+  @FXML private Pane pn37;
+
+  @FXML private Pane pn40;
+  @FXML private Pane pn41;
+  @FXML private Pane pn42;
+  @FXML private Pane pn43;
+  @FXML private Pane pn44;
+  @FXML private Pane pn45;
+  @FXML private Pane pn46;
+  @FXML private Pane pn47;
+
+  @FXML private Pane pn50;
+  @FXML private Pane pn51;
+  @FXML private Pane pn52;
+  @FXML private Pane pn53;
+  @FXML private Pane pn54;
+  @FXML private Pane pn55;
+  @FXML private Pane pn56;
+  @FXML private Pane pn57;
+
+  @FXML private Pane pn60;
+  @FXML private Pane pn61;
+  @FXML private Pane pn62;
+  @FXML private Pane pn63;
+  @FXML private Pane pn64;
+  @FXML private Pane pn65;
+  @FXML private Pane pn66;
+  @FXML private Pane pn67;
+
+  @FXML private Pane pn70;
+  @FXML private Pane pn71;
+  @FXML private Pane pn72;
+  @FXML private Pane pn73;
+  @FXML private Pane pn74;
+  @FXML private Pane pn75;
+  @FXML private Pane pn76;
+  @FXML private Pane pn77;
+
 
   @FXML private void initialize() {
     fullBoard.prefHeightProperty().bind(aspect.heightProperty().subtract(40));
@@ -162,7 +267,7 @@ public class MainBoardCtrl {
     right7.prefHeightProperty().bind(topA.widthProperty());
     right8.prefHeightProperty().bind(topA.widthProperty());
 
-    // piece indices and size bindings are set in Board constructor
+    allPieceSizeBindBoard();
   }
 
   /* =============== PIECE SIZE BINDINGS ======================================================== */
@@ -307,9 +412,16 @@ public class MainBoardCtrl {
     GridPane.setRowIndex(piece, y);
   }
 
+  public void initRootResizer(Scene scene, double aRatio) {
+    rrl = new RootResizeListener(scene, aRatio);
+    scene.widthProperty().addListener(rrl);
+    scene.heightProperty().addListener(rrl);
+  }
+
   /* ================= GETTERS ================================================================== */
   public Pane getAspectPane() { return aspect; }
   public Pane getUtilPane() { return utilPane; }
+  public GridPane getGridPane() { return board; }
 
   public ImageView getRookWR() { return rookWR; }
   public ImageView getRookWL() { return rookWL; }
@@ -349,5 +461,76 @@ public class MainBoardCtrl {
   public ImageView getPawnBF() { return pawnBF; }
   public ImageView getPawnBG() { return pawnBG; }
   public ImageView getPawnBH() { return pawnBH; }
+
+  public Pane[][] getCellPanes() { 
+    Pane[][] result = new Pane[8][8];
+
+    result[0][0] = pn00;
+    result[0][1] = pn01;
+    result[0][2] = pn02;
+    result[0][3] = pn03;
+    result[0][4] = pn04;
+    result[0][5] = pn05;
+    result[0][6] = pn06;
+    result[0][7] = pn07;
+    result[1][0] = pn10;
+    result[1][1] = pn11;
+    result[1][2] = pn12;
+    result[1][3] = pn13;
+    result[1][4] = pn14;
+    result[1][5] = pn15;
+    result[1][6] = pn16;
+    result[1][7] = pn17;
+    result[2][0] = pn20;
+    result[2][1] = pn21;
+    result[2][2] = pn22;
+    result[2][3] = pn23;
+    result[2][4] = pn24;
+    result[2][5] = pn25;
+    result[2][6] = pn26;
+    result[2][7] = pn27;
+    result[3][0] = pn30;
+    result[3][1] = pn31;
+    result[3][2] = pn32;
+    result[3][3] = pn33;
+    result[3][4] = pn34;
+    result[3][5] = pn35;
+    result[3][6] = pn36;
+    result[3][7] = pn37;
+    result[4][0] = pn40;
+    result[4][1] = pn41;
+    result[4][2] = pn42;
+    result[4][3] = pn43;
+    result[4][4] = pn44;
+    result[4][5] = pn45;
+    result[4][6] = pn46;
+    result[4][7] = pn47;
+    result[5][0] = pn50;
+    result[5][1] = pn51;
+    result[5][2] = pn52;
+    result[5][3] = pn53;
+    result[5][4] = pn54;
+    result[5][5] = pn55;
+    result[5][6] = pn56;
+    result[5][7] = pn57;
+    result[6][0] = pn60;
+    result[6][1] = pn61;
+    result[6][2] = pn62;
+    result[6][3] = pn63;
+    result[6][4] = pn64;
+    result[6][5] = pn65;
+    result[6][6] = pn66;
+    result[6][7] = pn67;
+    result[7][0] = pn70;
+    result[7][1] = pn71;
+    result[7][2] = pn72;
+    result[7][3] = pn73;
+    result[7][4] = pn74;
+    result[7][5] = pn75;
+    result[7][6] = pn76;
+    result[7][7] = pn77;
+
+    return result;
+  }
   /* =============== END GETTERS ================================================================ */
 }

@@ -260,6 +260,7 @@ public class Board {
 
   public Game getGame() { return game; }
   public Cell[][] getCells() { return cells; }
+  public Piece[] getPieces() { return pieces; }
 
   public void setNowSelected(Piece nowSelected) { this.nowSelected = nowSelected; }
   public Piece getNowSelected() { return nowSelected; }

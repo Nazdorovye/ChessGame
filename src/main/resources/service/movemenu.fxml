@@ -12,68 +12,69 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane prefHeight="680.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MoveMenuCtrl">
+<Pane fx:id="mainPane" prefHeight="680.0" prefWidth="468.0" style="-fx-background-color: #cc9966; -fx-border-color: #4a3728; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MoveMenuCtrl">
    <children>
-      <AnchorPane fx:id="moveMenuAPane" layoutX="4.0" layoutY="5.0" prefHeight="670.0" prefWidth="460.0">
+      <VBox fx:id="mainVbox" alignment="TOP_CENTER" prefHeight="670.0" prefWidth="460.0">
          <children>
-            <Pane fx:id="moveMenuPane" prefHeight="670.0" prefWidth="460.0">
+            <HBox prefHeight="16.0" prefWidth="460.0" />
+            <HBox fx:id="colorBox" alignment="CENTER" prefHeight="40.0" prefWidth="435.0">
                <children>
-                  <VBox fx:id="mainVbox" alignment="TOP_CENTER" prefHeight="670.0" prefWidth="460.0">
-                     <children>
-                        <HBox fx:id="colorBox" alignment="CENTER" prefHeight="40.0" prefWidth="435.0">
-                           <children>
-                              <Label fx:id="labelW" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="263.0" text="White">
-                                 <font>
-                                    <Font name="System Italic" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="labelB" alignment="CENTER" prefHeight="35.0" prefWidth="241.0" text="Black">
-                                 <font>
-                                    <Font name="System Italic" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="timerBox" alignment="CENTER" prefHeight="57.0" prefWidth="403.0">
-                           <children>
-                              <Label fx:id="timerW" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" text="Timer">
-                                 <font>
-                                    <Font size="28.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="timerB" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" text="Timer">
-                                 <font>
-                                    <Font size="28.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <ScrollPane fx:id="scrollPane" prefHeight="382.0" prefWidth="460.0">
-                          <content>
-                            <AnchorPane fx:id="scrollApane" minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="444.0">
-                                 <children>
-                                    <TableView fx:id="moveTable" prefHeight="445.0" prefWidth="445.0">
-                                      <columns>
-                                        <TableColumn fx:id="tableW" prefWidth="223.0" text="Moves" />
-                                        <TableColumn fx:id="tableB" prefWidth="222.0" text="Moves" />
-                                      </columns>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                        <HBox fx:id="buttonBox" alignment="CENTER" prefHeight="188.0" prefWidth="460.0">
-                           <children>
-                              <Button fx:id="giveUp" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" text="Give Up!" />
-                              <HBox fx:id="spaceBox" prefHeight="100.0" prefWidth="69.0" />
-                              <Button fx:id="draw" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" text="Draw!" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  <Label fx:id="labelW" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="217.0" style="-fx-background-color: #fff4c2;" text="White">
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelB" alignment="CENTER" prefHeight="35.0" prefWidth="217.0" style="-fx-background-color: #fff4c2;" text="Black">
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                  </Label>
                </children>
-            </Pane>
+            </HBox>
+            <HBox fx:id="timerBox" alignment="CENTER" prefHeight="57.0" prefWidth="403.0">
+               <children>
+                  <Label fx:id="timerW" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #4a3728;" text="Timer">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timerB" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #4a3728;" text="Timer">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="365.0" prefWidth="460.0" style="-fx-border-color: #4a3728; -fx-border-width: 3;">
+              <content>
+                <AnchorPane fx:id="scrollApane" minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="440.0">
+                     <children>
+                        <TableView fx:id="moveTable" layoutX="-2.0" layoutY="6.0" prefHeight="446.0" prefWidth="444.0">
+                          <columns>
+                            <TableColumn fx:id="tableW" prefWidth="223.0" text="Moves" />
+                            <TableColumn fx:id="tableB" prefWidth="222.0" text="Moves" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <HBox fx:id="buttonBox" alignment="CENTER" prefHeight="195.0" prefWidth="453.0">
+               <children>
+                  <Button fx:id="giveUp" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Give Up!">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <HBox fx:id="spaceBox" prefHeight="100.0" prefWidth="69.0" />
+                  <Button fx:id="draw" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Draw!">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </AnchorPane>
+      </VBox>
    </children>
 </Pane>

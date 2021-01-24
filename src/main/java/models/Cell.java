@@ -42,6 +42,13 @@ public class Cell {
   public Piece getPiece() { return enPassant ? null : piece; }
   public Piece getPassing() { return piece; }
 
-  public void setEnPassant(boolean enPassant) { this.enPassant = enPassant; }
+  public void setEnPassant(Piece piece) { 
+    enPassant = true;
+    this.piece = piece;
+  }
+  public void resetEnPassant() {
+    enPassant = false;
+    this.piece = null;
+  }  
   public boolean getEnPassant() { return enPassant; }
 }

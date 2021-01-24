@@ -13,9 +13,10 @@ import service.Game.GameState;
 public class Main extends Application {
   private static MainBoardCtrl boardCtrl;
   private static MainMenuCtrl mainMenuCtrl;
+  private static MoveMenuCtrl moveMenuCtrl;
   private Scene scene;
   private Node mainMenu;
-  // private Node gameMenu;
+  private Node gameMenu;
   private Game game;
 
 
@@ -56,6 +57,13 @@ public class Main extends Application {
       mainMenuCtrl = (MainMenuCtrl)loader.getController();
       mainMenuCtrl.onStartHotSeatPressed(this::startHotSeat);
 
+      loader = new FXMLLoader(getClass().getResource("movemenu.fxml"));
+
+      gameMenu = loader.load();
+      moveMenuCtrl = (MoveMenuCtrl)loader.getController();
+      
+
+
     } catch(Exception e) {
       System.out.print(e.getMessage());
       return false;
@@ -74,7 +82,7 @@ public class Main extends Application {
     stage.minHeightProperty().set(480.);
     stage.show();
 
-    swapMenuPanel(mainMenu); // set side panel to main menu
+    swapMenuPanel(gameMenu); // set side panel to main menu
     game = new Game(boardCtrl);
   }
 

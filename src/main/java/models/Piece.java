@@ -6,11 +6,13 @@ import service.Move;
 
 public class Piece {
   public enum Status { 
-    FREE, PINNED, TAKEN; 
+    FREE, PINNED, CHECKED, TAKEN, GUARDED; 
 
     public boolean pinned() { return this.equals(PINNED); }
     public boolean taken() { return this.equals(TAKEN); }
     public boolean free() { return this.equals(FREE); }
+    public boolean checked() { return this.equals(CHECKED); }
+    public boolean guarded() { return this.equals(GUARDED); }
   }
 
   public final Colour colour;

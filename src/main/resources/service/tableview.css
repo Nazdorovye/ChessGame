@@ -1,0 +1,10 @@
+
+.table-view > .column-header-background > .nested-column-header > .column-header{
+    -fx-background-color: #cc9966;
+    -fx-background-radius: 0;
+    -fx-alignment: CENTER;
+    -fx-border-color:   #bdf2db;
+    -fx-border-width: 2;
+    
+
+}

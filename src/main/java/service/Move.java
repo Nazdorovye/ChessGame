@@ -7,7 +7,15 @@ import models.Pawn;
 import models.Piece.Status;
 
 public class Move {
-  public enum Type { TRANSLATE, TAKE, PASSING, TAKEPASSING; }
+  public enum Type { 
+    TRANSLATE, 
+    TAKE, 
+    PASSING, 
+    TAKEPASSING, 
+    CHECKED; 
+  
+  public boolean checked() { return this.equals(CHECKED); }
+  }
 
   public final Type type;
   public final byte row_from;
@@ -69,6 +77,9 @@ public class Move {
 
         case TRANSLATE:
           break;
+        
+        case CHECKED:
+          return; // for king calc only
 
 
         default:

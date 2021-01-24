@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="root" prefHeight="680.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MainMenuCtrl">
    <children>
@@ -14,7 +15,7 @@
          <tabs>
             <Tab closable="false" text="Hotseat">
               <content>
-                <AnchorPane fx:id="hotSeatPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFCE9E; -fx-border-color: #754a1f; -fx-border-width: 5; -fx-outer-border: #000000;">
+                <AnchorPane fx:id="hotSeatPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-border-color: #4a3728; -fx-border-width: 5; -fx-outer-border: #000000;">
                      <children>
                         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -23,7 +24,10 @@
                                     <TextArea editable="false" prefHeight="78.0" prefWidth="408.0" text="  &#10;  A game for two players on this computer.&#10;  The players pass the turn to each other themselves.&#10;" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                  </children>
                               </AnchorPane>
-                              <Button fx:id="startHSBtn" mnemonicParsing="false" text="Start" />
+                              <Button fx:id="startHSBtn" mnemonicParsing="false" prefHeight="45.0" prefWidth="109.0" style="-fx-background-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Start">
+                                 <font>
+                                    <Font name="Comic Sans MS Bold" size="24.0" />
+                                 </font></Button>
                            </children>
                         </VBox>
                      </children>

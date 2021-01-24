@@ -83,6 +83,7 @@ public class MainBoardCtrl {
   @FXML private ImageView pawnBH;
 
   @FXML private AnchorPane utilPane;
+  @FXML private AnchorPane takenAnchor;
   @FXML private Pane root;
   @FXML private Pane aspect;
   @FXML private HBox charTop;
@@ -222,9 +223,12 @@ public class MainBoardCtrl {
     topA.prefWidthProperty().bind(
         charTop.widthProperty().subtract(nrLeft.widthProperty().multiply(2)).divide(8));
 
-    takenVBox.layoutXProperty().bind(fullBoard.widthProperty().add(30));
-    takenVBox.prefHeightProperty().bind(fullBoard.heightProperty());
-    takenVBox.prefWidthProperty().bind(takenVBox.heightProperty().divide(30).add(10));
+    takenAnchor.layoutXProperty().bind(fullBoard.widthProperty().add(30));
+    takenAnchor.prefHeightProperty().bind(fullBoard.heightProperty());
+    takenAnchor.maxHeightProperty().bind(takenAnchor.prefHeightProperty());
+    takenAnchor.prefWidthProperty().bind(takenAnchor.heightProperty().divide(32).subtract(20));
+    takenAnchor.maxWidthProperty().bind(takenAnchor.prefWidthProperty());
+    takenAnchor.minWidthProperty().bind(takenAnchor.prefWidthProperty());
 
     utilPane.layoutXProperty().bind(
         fullBoard.widthProperty().add(takenVBox.widthProperty()).add(50));
@@ -266,151 +270,63 @@ public class MainBoardCtrl {
     right6.prefHeightProperty().bind(topA.widthProperty());
     right7.prefHeightProperty().bind(topA.widthProperty());
     right8.prefHeightProperty().bind(topA.widthProperty());
-
-    allPieceSizeBindBoard();
   }
 
-  /* =============== PIECE SIZE BINDINGS ======================================================== */
-  public void pieceSizeBindBoard(ImageView piece) {
-    piece.fitWidthProperty().bind(topA.widthProperty());
-    piece.fitHeightProperty().bind(topA.widthProperty());
+  
+  public void setAllPiecesOnBoard() {
+    ImageView[] pieceBuf = getPieceImages();
+
+    int row = 0;
+    int col = 0;
+    for (ImageView pieceImage : pieceBuf) {
+      if (!board.getChildren().contains(pieceImage)) {
+        takenVBox.getChildren().remove(pieceImage);
+        board.getChildren().add(pieceImage);
+
+        pieceImage.fitWidthProperty().bind(topA.widthProperty());
+        pieceImage.fitHeightProperty().bind(topA.widthProperty());
+      }
+
+      GridPane.setConstraints(pieceImage, col++, row);     
+
+      if (col > 7) {
+        col = 0;
+        row++;
+      }
+      if (row == 2) row = 6;
+    }
   }
 
-  public void allPieceSizeBindBoard() {
-    pieceSizeBindBoard(rookWR);
-    pieceSizeBindBoard(rookWL);
-    pieceSizeBindBoard(rookBR);
-    pieceSizeBindBoard(rookBL);
 
-    pieceSizeBindBoard(knightWR);
-    pieceSizeBindBoard(knightWL);
-    pieceSizeBindBoard(knightBR);
-    pieceSizeBindBoard(knightBL);
+  public void setAllPiecesOnTaken() {
+    ImageView[] pieceBuf = getPieceImages();
 
-    pieceSizeBindBoard(bishopWR);
-    pieceSizeBindBoard(bishopWL);
-    pieceSizeBindBoard(bishopBR);
-    pieceSizeBindBoard(bishopBL);
+    for (ImageView pieceImage : pieceBuf) {
+      if (!takenVBox.getChildren().contains(pieceImage)) {
+        board.getChildren().remove(pieceImage);
+        takenVBox.getChildren().add(pieceImage);
 
-    pieceSizeBindBoard(queenW);
-    pieceSizeBindBoard(queenB); 
-
-    pieceSizeBindBoard(kingW);
-    pieceSizeBindBoard(kingB);
-
-    pieceSizeBindBoard(pawnWA);
-    pieceSizeBindBoard(pawnWB);
-    pieceSizeBindBoard(pawnWC);
-    pieceSizeBindBoard(pawnWD);
-    pieceSizeBindBoard(pawnWE);
-    pieceSizeBindBoard(pawnWF);
-    pieceSizeBindBoard(pawnWG);
-    pieceSizeBindBoard(pawnWH);
-
-    pieceSizeBindBoard(pawnBA);
-    pieceSizeBindBoard(pawnBB);
-    pieceSizeBindBoard(pawnBC);
-    pieceSizeBindBoard(pawnBD);
-    pieceSizeBindBoard(pawnBE);
-    pieceSizeBindBoard(pawnBF);
-    pieceSizeBindBoard(pawnBG);
-    pieceSizeBindBoard(pawnBH);
+        pieceImage.fitWidthProperty().bind(takenVBox.widthProperty().subtract(20));
+        pieceImage.fitHeightProperty().bind(takenVBox.widthProperty().subtract(20));
+      }
+    }
   }
 
-  public void pieceSizeBindTaken(ImageView piece) {
-    piece.fitWidthProperty().bind(takenVBox.widthProperty().subtract(10));
-    piece.fitHeightProperty().bind(piece.fitHeightProperty());
+
+  public void setPieceIndex(ImageView visual_piece, int col_dest, int row_dest) {
+    GridPane.setConstraints(visual_piece, col_dest, row_dest);
   }
 
-  public void allPieceSizeBindTaken() {
-    pieceSizeBindTaken(rookWR);
-    pieceSizeBindTaken(rookWL);
-    pieceSizeBindTaken(rookBR);
-    pieceSizeBindTaken(rookBL);
 
-    pieceSizeBindTaken(knightWR);
-    pieceSizeBindTaken(knightWL);
-    pieceSizeBindTaken(knightBR);
-    pieceSizeBindTaken(knightBL);
+  public void setPieceTaken(ImageView visual_piece) {
+    if (board.getChildren().remove(visual_piece)) {
+      takenVBox.getChildren().add(visual_piece);
 
-    pieceSizeBindTaken(bishopWR);
-    pieceSizeBindTaken(bishopWL);
-    pieceSizeBindTaken(bishopBR);
-    pieceSizeBindTaken(bishopBL);
-
-    pieceSizeBindTaken(queenW);
-    pieceSizeBindTaken(queenB); 
-
-    pieceSizeBindTaken(kingW);
-    pieceSizeBindTaken(kingB);
-
-    pieceSizeBindTaken(pawnWA);
-    pieceSizeBindTaken(pawnWB);
-    pieceSizeBindTaken(pawnWC);
-    pieceSizeBindTaken(pawnWD);
-    pieceSizeBindTaken(pawnWE);
-    pieceSizeBindTaken(pawnWF);
-    pieceSizeBindTaken(pawnWG);
-    pieceSizeBindTaken(pawnWH);
-
-    pieceSizeBindTaken(pawnBA);
-    pieceSizeBindTaken(pawnBB);
-    pieceSizeBindTaken(pawnBC);
-    pieceSizeBindTaken(pawnBD);
-    pieceSizeBindTaken(pawnBE);
-    pieceSizeBindTaken(pawnBF);
-    pieceSizeBindTaken(pawnBG);
-    pieceSizeBindTaken(pawnBH);
-  }
-  /* ============== END PIECE SIZE BINDINGS ===================================================== */
-
-  public void resetPieceIndices() {
-    allPieceSizeBindBoard();
-
-    GridPane.setConstraints(rookWR, 7, 7);
-    GridPane.setConstraints(rookWL, 0, 7);
-    GridPane.setConstraints(rookBR, 7, 0);
-    GridPane.setConstraints(rookBL, 0, 0);
-
-    GridPane.setConstraints(knightWR, 6, 7);
-    GridPane.setConstraints(knightWL, 1, 7);
-    GridPane.setConstraints(knightBR, 6, 0);
-    GridPane.setConstraints(knightBL, 1, 0);
-
-    GridPane.setConstraints(bishopWR,  5,  7);
-    GridPane.setConstraints(bishopWL,  2,  7);
-    GridPane.setConstraints(bishopBR,  5,  0);
-    GridPane.setConstraints(bishopBL,  2,  0);
-
-    GridPane.setConstraints(queenW, 3, 7);
-    GridPane.setConstraints(queenB, 3, 0);
-
-    GridPane.setConstraints(kingW, 4, 7);
-    GridPane.setConstraints(kingB, 4, 0);
-
-    GridPane.setConstraints(pawnWA, 0, 6);
-    GridPane.setConstraints(pawnWB, 1, 6);
-    GridPane.setConstraints(pawnWC, 2, 6);
-    GridPane.setConstraints(pawnWD, 3, 6);
-    GridPane.setConstraints(pawnWE, 4, 6);
-    GridPane.setConstraints(pawnWF, 5, 6);
-    GridPane.setConstraints(pawnWG, 6, 6);
-    GridPane.setConstraints(pawnWH, 7, 6);
-
-    GridPane.setConstraints(pawnBA, 0, 1);
-    GridPane.setConstraints(pawnBB, 1, 1);
-    GridPane.setConstraints(pawnBC, 2, 1);
-    GridPane.setConstraints(pawnBD, 3, 1);
-    GridPane.setConstraints(pawnBE, 4, 1);
-    GridPane.setConstraints(pawnBF, 5, 1);
-    GridPane.setConstraints(pawnBG, 6, 1);
-    GridPane.setConstraints(pawnBH, 7, 1);
+      visual_piece.fitWidthProperty().bind(takenVBox.widthProperty().subtract(10));
+      visual_piece.fitHeightProperty().bind(visual_piece.fitHeightProperty());
+    }
   }
 
-  public void setPieceIndex(ImageView piece, int x, int y) {
-    GridPane.setColumnIndex(piece, x);
-    GridPane.setRowIndex(piece, y);
-  }
 
   public void initRootResizer(Scene scene, double aRatio) {
     rrl = new RootResizeListener(scene, aRatio);
@@ -422,6 +338,7 @@ public class MainBoardCtrl {
   public Pane getAspectPane() { return aspect; }
   public Pane getUtilPane() { return utilPane; }
   public GridPane getGridPane() { return board; }
+  public VBox getTakenBox() { return takenVBox; }
 
   public ImageView getRookWR() { return rookWR; }
   public ImageView getRookWL() { return rookWL; }
@@ -461,6 +378,45 @@ public class MainBoardCtrl {
   public ImageView getPawnBF() { return pawnBF; }
   public ImageView getPawnBG() { return pawnBG; }
   public ImageView getPawnBH() { return pawnBH; }
+
+  public ImageView[] getPieceImages() {
+    ImageView[] result = new ImageView[32];
+
+    result[0] = rookBL;
+    result[1] = bishopBL;
+    result[2] = knightBL;
+    result[3] = queenB;
+    result[4] = kingB;
+    result[5] = knightBR;
+    result[6] = bishopBR;
+    result[7] = rookBR;
+    result[8] = pawnBA;
+    result[9] = pawnBB;
+    result[10] = pawnBC;
+    result[11] = pawnBD;
+    result[12] = pawnBE;
+    result[13] = pawnBF;
+    result[14] = pawnBG;
+    result[15] = pawnBH;
+    result[16] = pawnWA;
+    result[17] = pawnWB;
+    result[18] = pawnWC;
+    result[19] = pawnWD;
+    result[20] = pawnWE;
+    result[21] = pawnWF;
+    result[22] = pawnWG;
+    result[23] = pawnWH;
+    result[24] = rookWL;
+    result[25] = bishopWL;
+    result[26] = knightWL;
+    result[27] = queenW;
+    result[28] = kingW;
+    result[29] = knightWR;
+    result[30] = bishopWR;
+    result[31] = rookWR;
+
+    return result;
+  }
 
   public Pane[][] getCellPanes() { 
     Pane[][] result = new Pane[8][8];

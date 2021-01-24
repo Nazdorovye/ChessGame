@@ -33,8 +33,7 @@ public class Main extends Application {
     if (ButtonType.NO.equals(result)) return;
 
     // swapMenuPanel(gameMenu);
-    game.reset();
-    game.setGameState(GameState.HOTSEAT);
+    game.start(GameState.HOTSEAT);
   }
 
 

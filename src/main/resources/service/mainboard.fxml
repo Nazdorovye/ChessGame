@@ -192,164 +192,164 @@
                               <Pane fx:id="pn36" style="-fx-background-color: #cc9966;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                               <Pane fx:id="pn67" style="-fx-background-color: #cc9966;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
                               <Pane fx:id="pn76" style="-fx-background-color: #cc9966;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-                              <Pane fx:id="pn00" style="-fx-background-color: #cc9966;" />
+                              <Pane fx:id="pn00" style="-fx-background-color: #cc9966;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                               <Pane fx:id="pn07" layoutX="10.0" layoutY="241.0" style="-fx-background-color: #cc9966;" GridPane.rowIndex="7" />
-                              <ImageView fx:id="rookWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+                              <ImageView fx:id="rookWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="7">
                                  <image>
                                     <Image url="@Chess_rlt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="knightWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <ImageView fx:id="knightWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_nlt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="bishopWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                              <ImageView fx:id="bishopWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_blt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="kingW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                              <ImageView fx:id="kingW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_qlt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="queenW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                              <ImageView fx:id="queenW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_klt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="bishopWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                              <ImageView fx:id="bishopWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_blt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="knightWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
+                              <ImageView fx:id="knightWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_nlt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="rookWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
+                              <ImageView fx:id="rookWR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_rlt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWA" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWA" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWC" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWC" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWD" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWD" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWE" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWE" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWF" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWF" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWG" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWG" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnWH" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6">
+                              <ImageView fx:id="pawnWH" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_plt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="rookBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="rookBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_rdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="knightBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                              <ImageView fx:id="knightBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_ndt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="bishopBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                              <ImageView fx:id="bishopBL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_bdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="kingB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                              <ImageView fx:id="kingB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_qdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="queenB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                              <ImageView fx:id="queenB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_kdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="bishopBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+                              <ImageView fx:id="bishopBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_bdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="knightBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+                              <ImageView fx:id="knightBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_ndt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="rookBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
+                              <ImageView fx:id="rookBR" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_rdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBA" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBA" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBC" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBC" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBD" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBD" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBE" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBE" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBF" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBF" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBG" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBG" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pawnBH" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                              <ImageView fx:id="pawnBH" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_pdt60.png" />
                                  </image>

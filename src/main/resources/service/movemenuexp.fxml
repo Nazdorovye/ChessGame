@@ -19,49 +19,45 @@
             <HBox prefHeight="16.0" prefWidth="460.0" />
             <HBox fx:id="colorBox" alignment="CENTER" prefHeight="40.0" prefWidth="435.0">
                <children>
-                  <Label fx:id="labelW" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="White">
+                  <Label fx:id="labelW" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="217.0" style="-fx-background-color: #fff4c2;" text="White">
                      <font>
-                        <Font name="Comic Sans MS Bold Italic" size="24.0" />
+                        <Font name="System Italic" size="24.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="39.0" prefWidth="34.0" />
-                  <Label fx:id="labelB" alignment="CENTER" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Black">
+                  <Label fx:id="labelB" alignment="CENTER" prefHeight="35.0" prefWidth="217.0" style="-fx-background-color: #fff4c2;" text="Black">
                      <font>
-                        <Font name="Comic Sans MS Bold Italic" size="24.0" />
+                        <Font name="System Italic" size="24.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
             <HBox fx:id="timerBox" alignment="CENTER" prefHeight="57.0" prefWidth="403.0">
                <children>
-                  <Label fx:id="timerW" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 ); -fx-border-width: 5;" text="Timer">
+                  <Label fx:id="timerW" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #4a3728;" text="Timer">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Label>
-                  <Label fx:id="timerB" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 ); -fx-border-width: 5;" text="Timer">
+                  <Label fx:id="timerB" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #4a3728;" text="Timer">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="365.0" prefWidth="460.0" style="-fx-border-color: #cc9966; -fx-border-width: 3;">
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="365.0" prefWidth="460.0" style="-fx-border-color: #4a3728; -fx-border-width: 3;">
               <content>
-                <AnchorPane fx:id="scrollApane" minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="455.0">
+                <AnchorPane fx:id="scrollApane" minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="440.0">
                      <children>
-                        <TableView fx:id="moveTable" layoutX="-2.0" layoutY="-3.0" prefHeight="455.0" prefWidth="445.0" style="-fx-background-color: #bdf2db;" styleClass="column-header" stylesheets="@tableview.css" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-2.0">
+                        <TableView fx:id="moveTable" layoutX="-2.0" layoutY="-3.0" prefHeight="455.0" prefWidth="444.0" style="-fx-background-color: #fff4c2;" stylesheets="@tableview.css">
                           <columns>
-                              <TableColumn fx:id="columnNr" prefWidth="42.0" text="Nr" />
-                            <TableColumn fx:id="tableW" prefWidth="185.0" text="Moves" />
-                            <TableColumn fx:id="tableB" prefWidth="185.0" text="Moves" />
+                              <TableColumn fx:id="columnNr" prefWidth="42.0" text="Nr"/>
+                            <TableColumn fx:id="tableW" prefWidth="189.0" text="Moves" />
+                            <TableColumn fx:id="tableB" prefWidth="189.0" text="Moves" />
                           </columns>
                            <padding>
-                              <Insets left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" right="5.0" top="5.0" />
                            </padding>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
                         </TableView>
                      </children>
                   </AnchorPane>

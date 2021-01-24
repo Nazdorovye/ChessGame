@@ -154,14 +154,14 @@ public class Board {
 
     int idx = 0;
     boolean dark = false;
-    for (int row = 0; row <= 7; row++) {
-      visual_pieces[idx].setOnMousePressed(this::OnPieceMouseDown);
-      visual_pieces[idx].setOnMouseEntered(this::OnPieceMouseEntered);
-      visual_pieces[idx].setOnMouseExited(this::OnPieceMouseExited);
-      
+    for (int row = 0; row <= 7; row++) {      
       for (int col = 0; col <= 7; col++) {
         if (row < 2 || row > 5) {
-          cells[col][row] = new Cell(pieces[idx++], visual_cells[col][row], dark);
+          cells[col][row] = new Cell(pieces[idx], visual_cells[col][row], dark);
+          visual_pieces[idx].setOnMousePressed(this::OnPieceMouseDown);
+          visual_pieces[idx].setOnMouseEntered(this::OnPieceMouseEntered);
+          visual_pieces[idx++].setOnMouseExited(this::OnPieceMouseExited);
+
         } else {
           cells[col][row] = new Cell(null, visual_cells[col][row], dark);
         }

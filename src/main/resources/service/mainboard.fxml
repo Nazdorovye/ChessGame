@@ -450,7 +450,7 @@
             </VBox>
             <AnchorPane fx:id="takenAnchor" layoutX="710.0" layoutY="20.0">
                <children>
-                  <VBox fx:id="takenVBox" alignment="TOP_CENTER" prefHeight="680.0" prefWidth="32.0" style="-fx-background-color: #D18B47; -fx-border-color: #754a1f; -fx-border-width: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <VBox fx:id="takenVBox" alignment="TOP_CENTER" prefHeight="680.0" prefWidth="22.0" style="-fx-background-color: #D18B47; -fx-border-color: #754a1f; -fx-border-width: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="utilPane" layoutX="762.0" layoutY="20.0" prefHeight="680.0" prefWidth="498.0" />

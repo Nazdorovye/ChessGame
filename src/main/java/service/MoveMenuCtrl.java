@@ -27,6 +27,7 @@ public class MoveMenuCtrl {
     @FXML ScrollPane scrollPane;
     @FXML AnchorPane scrollApane;
     @FXML TableView moveTable;
+    @FXML TableColumn columnNr;
     @FXML TableColumn tableW;
     @FXML TableColumn tableB;
     @FXML HBox buttonBox;

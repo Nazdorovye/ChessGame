@@ -45,26 +45,27 @@ public class Rook extends Piece {
 
         // find out all available cells above Rook starting position
 
-        for (int k = 0; k <= row; k++) {
+        pieceFound = false;
+        for (int k = 1; k <= row; k++) {
             if (pieceFound == true) {
-                if (brd.getCells()[col][row - k].getPiece() == null) {
+                if (brd.getCells()[col][(byte)(row-k)].getPiece() == null) {
                     continue;
                 } else {
-                    if (brd.getCells()[col][row - k].getPiece().getClass() == King.class
-                            && !brd.getCells()[col][row - k].getPiece().colour.equals(colour)) {
+                    if (brd.getCells()[col][(byte)(row-k)].getPiece().getClass() == King.class
+                            && !brd.getCells()[col][(byte)(row-k)].getPiece().colour.equals(colour)) {
                         potPinnedPiece.setStatus(Status.PINNED);
                     }
                 }
             } else {
-                if (brd.getCells()[col][row - k].getPiece() == null) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, col, (byte) (row - k)));
+                if (brd.getCells()[col][(byte)(row-k)].getPiece() == null) {
+                    moves.add(new Move(Move.Type.TRANSLATE, col, row, col, (byte)(row-k)));
                 }
 
                 else {
-                    if (brd.getCells()[col][row - k].getPiece() != null
-                            && !brd.getCells()[col][row - k].getPiece().colour.equals(colour)) {
+                    if (brd.getCells()[col][(byte)(row-k)].getPiece() != null
+                            && !brd.getCells()[col][(byte)(row-k)].getPiece().colour.equals(colour)) {
                         moves.add(new Move(Move.Type.TAKE, col, row, col, (byte) (row - k)));
-                        potPinnedPiece = brd.getCells()[col][row - k].getPiece();
+                        potPinnedPiece = brd.getCells()[col][(byte)(row-k)].getPiece();
                     }
                     pieceFound = true;
                 }
@@ -72,8 +73,8 @@ public class Rook extends Piece {
         }
 
         // find out available cells on the left side from Rook starting position
-
-        for (int l = 0; l <= col; l++) {
+        pieceFound = false;
+        for (int l = 1; l <= col; l++) {
             if (pieceFound == true) {
                 if (brd.getCells()[col - l][row].getPiece() == null) {
                     continue;
@@ -100,7 +101,7 @@ public class Rook extends Piece {
         }
 
         // find out available cells on the right side from Rook starting position
-
+        pieceFound = false;
         for (int m = col + 1; m <= 7; m++) {
             if (pieceFound == true) {
                 if (brd.getCells()[m][row].getPiece() == null) {

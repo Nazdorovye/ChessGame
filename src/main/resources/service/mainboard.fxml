@@ -192,7 +192,7 @@
                               <Pane fx:id="pn36" style="-fx-background-color: #cc9966;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                               <Pane fx:id="pn67" style="-fx-background-color: #cc9966;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
                               <Pane fx:id="pn76" style="-fx-background-color: #cc9966;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-                              <Pane fx:id="pn00" style="-fx-background-color: #cc9966;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                              <Pane fx:id="pn00" style="-fx-background-color: #fff4c2;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                               <Pane fx:id="pn07" layoutX="10.0" layoutY="241.0" style="-fx-background-color: #cc9966;" GridPane.rowIndex="7" />
                               <ImageView fx:id="rookWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="7">
                                  <image>
@@ -448,7 +448,11 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="takenVBox" layoutX="710.0" layoutY="20.0" prefHeight="680.0" prefWidth="32.0" style="-fx-background-color: #cc9966; -fx-border-color: #4a3728; -fx-border-width: 5;" />
+            <AnchorPane fx:id="takenAnchor" layoutX="710.0" layoutY="20.0">
+               <children>
+                  <VBox fx:id="takenVBox" alignment="TOP_CENTER" layoutX="710.0" layoutY="20.0" prefHeight="680.0" prefWidth="32.0" style="-fx-background-color: #cc9966; -fx-border-color: #4a3728; -fx-border-width: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+               </children>
+            </AnchorPane>            
             <AnchorPane fx:id="utilPane" layoutX="762.0" layoutY="20.0" prefHeight="680.0" prefWidth="498.0" />
          </children>
       </Pane>

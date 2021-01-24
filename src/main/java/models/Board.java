@@ -11,6 +11,7 @@ import service.Colour;
 import service.Game;
 import service.MainBoardCtrl;
 import service.Move;
+import service.Game.TurnState;
 
 public class Board {
   private Game game;
@@ -62,6 +63,7 @@ public class Board {
     cells[col][row].markCell(Mark.SELECTED);
     highlightMoveCells(nowSelected, false);
     setAllPiecesTransparent();
+    game.setTurnState(TurnState.SELECT_MOVE);
   }
 
 
@@ -123,8 +125,19 @@ public class Board {
       return;
     }
 
-    highlightMoveCells(cells[col][row].getPiece(), true);   
-    foundMove.execute(this, game.boardCtrl, visual_pieces);
+    cells[nowSelected.col][nowSelected.row].markCell(Mark.CLEAR);
+    highlightMoveCells(cells[nowSelected.col][nowSelected.row].getPiece(), true);
+    
+    try {
+      foundMove.execute(this, game.boardCtrl, visual_pieces);
+    } catch (Exception exc) {
+      System.out.printf("OnCellMouseDown (Cells[%d][%d]) exception {\n%s}\n", 
+          col, row, exc.getMessage());
+    }
+
+    game.setNextPlayer();    
+
+    nowSelected = null;
   }
 
   public void setPieces() {
@@ -157,6 +170,10 @@ public class Board {
     for (int row = 0; row <= 7; row++) {      
       for (int col = 0; col <= 7; col++) {
         if (row < 2 || row > 5) {
+          if (col == 3 && row == 4) {
+            col = 3;
+          }
+
           cells[col][row] = new Cell(pieces[idx], visual_cells[col][row], dark);
           visual_pieces[idx].setOnMousePressed(this::OnPieceMouseDown);
           visual_pieces[idx].setOnMouseEntered(this::OnPieceMouseEntered);
@@ -172,9 +189,30 @@ public class Board {
       dark = !dark;
     }
 
+    recalcMoves();
+  }
+
+  public void recalcMoves() {
     for (Piece piece : pieces) {
       if (piece == null) continue;
       piece.calcAvalableCells(this);
+    }
+  }
+
+  public void resetBoard() {
+    byte idx = 0;
+    for (byte row = 0; row < 8; row++) {
+      if (row == 2) row = 6;
+      
+      for (byte col = 0; col < 8; col++, idx++) {
+        cells[col][row].resetEnPassant();
+        cells[col][row].setPiece(pieces[idx]);
+
+        if (pieces[idx] == null) continue;
+
+        pieces[idx].setCol(col);
+        pieces[idx].setRow(row);
+      }
     }
   }
 
@@ -202,6 +240,14 @@ public class Board {
         visual_pieces[i].setMouseTransparent(true);
       } else {
         visual_pieces[i].setMouseTransparent(!pieces[i].colour.equals(colour));
+      }
+    }
+  }
+
+  public void setCellsTransparency(boolean transparent) {
+    for (int col = 0; col < 8; col++) {
+      for (int row = 0; row < 8; row++) {
+        visual_cells[col][row].setMouseTransparent(transparent);
       }
     }
   }

@@ -8,7 +8,7 @@ public class Cell {
   
     public String getColour(boolean dark) { 
       switch (this) {
-        case CLEAR: return dark ? "#D18B47" : "#FFCE9E";
+        case CLEAR: return dark ? "#cc9966" : "#fff4c2";
         case MOVE: return "#DDDDDD";
         case SELECTED: return "#7f7f7f";
         case PINNED: return "#fc5a5a";
@@ -42,6 +42,13 @@ public class Cell {
   public Piece getPiece() { return enPassant ? null : piece; }
   public Piece getPassing() { return piece; }
 
-  public void setEnPassant(boolean enPassant) { this.enPassant = enPassant; }
+  public void setEnPassant(Piece piece) { 
+    enPassant = true;
+    this.piece = piece;
+  }
+  public void resetEnPassant() {
+    enPassant = false;
+    this.piece = null;
+  }  
   public boolean getEnPassant() { return enPassant; }
 }

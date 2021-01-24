@@ -1,11 +1,7 @@
 package models;
 
 import java.util.ArrayList;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import models.Cell.Mark;
 import service.Colour;
-import service.Game;
 import service.Move;
 
 public class Piece {

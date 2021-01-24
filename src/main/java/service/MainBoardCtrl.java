@@ -226,7 +226,7 @@ public class MainBoardCtrl {
     takenAnchor.layoutXProperty().bind(fullBoard.widthProperty().add(30));
     takenAnchor.prefHeightProperty().bind(fullBoard.heightProperty());
     takenAnchor.maxHeightProperty().bind(takenAnchor.prefHeightProperty());
-    takenAnchor.prefWidthProperty().bind(takenAnchor.heightProperty().divide(32).subtract(20));
+    takenAnchor.prefWidthProperty().bind(fullBoard.heightProperty().subtract(10).divide(32));
     takenAnchor.maxWidthProperty().bind(takenAnchor.prefWidthProperty());
     takenAnchor.minWidthProperty().bind(takenAnchor.prefWidthProperty());
 
@@ -306,8 +306,7 @@ public class MainBoardCtrl {
         board.getChildren().remove(pieceImage);
         takenVBox.getChildren().add(pieceImage);
 
-        pieceImage.fitWidthProperty().bind(takenVBox.widthProperty().subtract(20));
-        pieceImage.fitHeightProperty().bind(takenVBox.widthProperty().subtract(20));
+        pieceImage.fitWidthProperty().bind(takenVBox.widthProperty().subtract(0.9));
       }
     }
   }
@@ -322,8 +321,7 @@ public class MainBoardCtrl {
     if (board.getChildren().remove(visual_piece)) {
       takenVBox.getChildren().add(visual_piece);
 
-      visual_piece.fitWidthProperty().bind(takenVBox.widthProperty().subtract(10));
-      visual_piece.fitHeightProperty().bind(visual_piece.fitHeightProperty());
+      visual_piece.fitWidthProperty().bind(takenVBox.widthProperty().subtract(0.9));
     }
   }
 

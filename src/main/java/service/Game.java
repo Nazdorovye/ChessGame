@@ -1,6 +1,5 @@
 package service;
 
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import models.Board;
 
@@ -12,7 +11,9 @@ public class Game {
 
   public enum TurnState {
     SELECT_PIECE,
-    SELECT_MOVE
+    SELECT_MOVE;
+
+    public boolean boardTransparent() { return this.equals(SELECT_PIECE) ? true : false; }
   }
 
   public final MainBoardCtrl boardCtrl;
@@ -22,12 +23,15 @@ public class Game {
   private Colour playerTurn;
 
   public void setNextPlayer() {
-    gameBoard.switchTransparency(playerTurn);
     playerTurn = Colour.values()[1 - playerTurn.ordinal()];
-    turnState = TurnState.SELECT_PIECE;
+    gameBoard.switchTransparency(playerTurn);
+    
+    setTurnState(TurnState.SELECT_PIECE);
+    gameBoard.recalcMoves();
   }
   
   public void reset() {
+    setTurnState(TurnState.SELECT_PIECE);
     gameState = GameState.MENU;
     gameBoard.setAllPiecesTransparent();
     boardCtrl.setAllPiecesOnTaken();
@@ -39,9 +43,10 @@ public class Game {
 
     switch (this.gameState) {
       case HOTSEAT:        
-        turnState = TurnState.SELECT_PIECE;
+        setTurnState(TurnState.SELECT_PIECE);
         boardCtrl.setAllPiecesOnBoard();
         gameBoard.switchTransparency(playerTurn);
+        gameBoard.resetBoard();
 
         break;
       default:
@@ -60,7 +65,10 @@ public class Game {
   public Colour getNextPlayer() { return playerTurn; }
   public GridPane getGridPane() { return boardCtrl.getGridPane(); }
 
-  public void setTurnState(TurnState turnState) { this.turnState = turnState; }
+  public void setTurnState(TurnState turnState) { 
+    this.turnState = turnState;
+    gameBoard.setCellsTransparency(turnState.boardTransparent());
+  }
   public TurnState getTurnState() { return turnState; }
 
   public void setGameState(GameState gameState) { this.gameState = gameState; }

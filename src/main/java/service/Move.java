@@ -4,6 +4,7 @@ import javafx.scene.image.ImageView;
 import models.Board;
 import models.Cell;
 import models.Pawn;
+import models.Piece.Status;
 
 public class Move {
   public enum Type { TRANSLATE, TAKE, PASSING, TAKEPASSING; }
@@ -22,36 +23,67 @@ public class Move {
     this.col_dest = col_dest;
   }
 
-  public void execute(Board board, MainBoardCtrl boardCtrl, ImageView[] visual_pieces) { 
-    final Cell c_from = board.getCells()[col_from][row_from];
-    final Cell c_dest = board.getCells()[col_dest][row_dest];
-    final boolean isPawn = c_from.getPiece().getClass() == Pawn.class;
+  public void execute(Board brd, MainBoardCtrl brdCtrl, ImageView[] vPieces) throws Exception {
+    String excAccum = "";
+    
+    /* null argument reference exception */
+    if (brd == null)     excAccum += "\targ: brd == null\n";
+    if (brdCtrl == null) excAccum += "\targ: brtCtrl == null\n";
+    if (vPieces == null) excAccum += "\targ: vPieces == null\n";
 
-    switch (type) {
-      case TAKE:     
-        boardCtrl.setPieceTaken(visual_pieces[c_dest.getPiece().visualIdx]);
+    if (excAccum != "") throw new Exception(excAccum);
+    /* --------------------------------- */
 
-      case TAKEPASSING:
-        if (isPawn) {
-          boardCtrl.setPieceTaken(visual_pieces[c_dest.getPiece().visualIdx]);
-          c_dest.setEnPassant(false);
-        }
-
-      case PASSING:
-        if (isPawn) {
-          board.getCells()[col_from][row_from + c_from.getPiece().colour.direction()].setEnPassant(true);
-        }
-
-      case TRANSLATE:
+    final Cell c_from = brd.getCells()[col_from][row_from];
+    final Cell c_dest = brd.getCells()[col_dest][row_dest];
+    
+    /* null cell reference exception     */
+    if (c_from == null)  excAccum += String.format("\tvar: c_from (Cells[%d][%d]) == null\n",
+        col_from, row_from);
+    if (c_dest == null)  excAccum += String.format("\tvar: c_dest (Cells[%d][%d]) == null\n",
+        col_dest, row_dest);
+    
+    if (excAccum != "") throw new Exception(excAccum);
+    /* --------------------------------- */
         
+    try {
+      switch (type) {
+        case TAKE:
+            brdCtrl.setPieceTaken(vPieces[c_dest.getPiece().visualIdx]);
+            c_dest.getPiece().setStatus(Status.TAKEN);        
+            c_dest.resetEnPassant();
+          break;
 
-      default:
-        if (isPawn) {
-          board.getCells()[col_from][row_from - c_from.getPiece().colour.direction()].setEnPassant(false);
-        }
+        case TAKEPASSING: // for pawn
+          brdCtrl.setPieceTaken(vPieces[c_dest.getPassing().visualIdx]);
+          c_dest.getPassing().setStatus(Status.TAKEN);
+          c_dest.resetEnPassant();
+          brd.getCells()[col_dest][row_from].removePiece();
+          break;
 
-        boardCtrl.setPieceIndex(visual_pieces[c_from.getPiece().visualIdx], col_dest, row_dest);
-        c_dest.setPiece(c_from.removePiece());            
+        case PASSING: // for pawn
+          brd.getCells()[col_from][row_from + c_from.getPiece().colour.direction()].setEnPassant  (c_from.getPiece());
+          Pawn pwn = (Pawn)brd.getCells()[col_from][row_from].getPiece();
+          pwn.setPassingCounter();
+          break;
+
+        case TRANSLATE:
+          break;
+
+
+        default:
+          break;         
+      }
+    } catch (Exception e) { throw new Exception(e.getMessage()); } 
+
+    brdCtrl.setPieceIndex(vPieces[c_from.getPiece().visualIdx], col_dest, row_dest);
+    c_dest.setPiece(c_from.removePiece());
+    c_dest.getPiece().setCol(col_dest);         
+    c_dest.getPiece().setRow(row_dest);
+
+    // special pawn case for transform
+    if (c_dest.getPiece().getClass().isNestmateOf(Pawn.class)) {
+      // TODO conversion
     }
   }
 }

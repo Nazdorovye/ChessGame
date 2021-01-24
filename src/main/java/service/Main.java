@@ -32,7 +32,7 @@ public class Main extends Application {
 
     if (ButtonType.NO.equals(result)) return;
 
-    // swapMenuPanel(gameMenu);
+    swapMenuPanel(gameMenu);
     game.start(GameState.HOTSEAT);
   }
 
@@ -82,7 +82,7 @@ public class Main extends Application {
     stage.minHeightProperty().set(480.);
     stage.show();
 
-    swapMenuPanel(gameMenu); // set side panel to main menu
+    swapMenuPanel(mainMenu); // set side panel to main menu
     game = new Game(boardCtrl);
   }
 

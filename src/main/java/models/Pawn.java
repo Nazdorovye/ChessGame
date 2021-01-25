@@ -23,11 +23,6 @@ public class Pawn extends Piece {
    */
   @Override
   public void calcAvalableCells(Board brd) {
-    // todo: special case for pinned piece
-    if (status.pinned()) {
-      recalcCheckedMoves(brd);
-      return;
-    }
 
     // discard outdated moves
     moves.clear();
@@ -91,7 +86,7 @@ public class Pawn extends Piece {
               }
             }
           } else if (cell.getPiece() != null && cell.getPiece().colour.equals(colour)) {
-              cell.getPiece().status = Status.GUARDED;
+              cell.getPiece().setStatus(Status.GUARDED);
           }
         }
       }
@@ -105,6 +100,8 @@ public class Pawn extends Piece {
    */
   @Override
   public void recalcCheckedMoves(Board brd) {
+    if (status.taken()) return;
+
     ArrayList<Move> new_moves = new ArrayList<Move>(); // list to store valid moves
     
     // Define ally king with polymorphic cast Piece->King
@@ -139,5 +136,24 @@ public class Pawn extends Piece {
     moves = new_moves;
   }
 
+  /**
+   * Overrides standard method as it is needed to manually 
+   *    handle canMove variable for cell highlighting
+   */
+  @Override
+  protected void recalcPinnedMoves(Board brd) {    
+    super.recalcPinnedMoves(brd);
+
+    canMove = false;
+    
+    for (Move move : moves) {
+      if (move.type.take() || move.type.takepassing() || move.type.translate())
+        canMove = true;
+    }
+  }
+
+  /**
+   * Method to set passing counter
+   */
   public void setPassingCounter() { epsm = 2; }
 }

@@ -6,7 +6,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+
 import models.Cell.Mark;
+import models.Piece.Status;
+
 import service.Colour;
 import service.Game;
 import service.MainBoardCtrl;
@@ -52,9 +55,8 @@ public class Board {
     int col = GridPane.getColumnIndex(visual_piece);
 
     nowSelected = cells[col][row].getPiece();
-    ArrayList<Move> availableMoves = nowSelected.getMoves();
 
-    if (availableMoves.size() == 0) {
+    if (!nowSelected.getCanMove()) {
       nowSelected = null;
       e.consume();
       return;
@@ -150,18 +152,18 @@ public class Board {
     // Rest of pieces
     pieces[0]  = new Rook((byte)0,Colour.BLACKS, (byte)0, (byte)0);
     // pieces[1]  = new Knight(Colour.BLACKS, (byte)1, (byte)0);
-    // pieces[2]  = new Bishop(Colour.BLACKS, (byte)2, (byte)0);
+    pieces[2]  = new Bishop((byte)2, Colour.BLACKS, (byte)2, (byte)0);
+    pieces[3]  = new King((byte)3, Colour.BLACKS, (byte)3, (byte)0);
     // pieces[3]  = new Queen(Colour.BLACKS, (byte)3, (byte)0);
-    // pieces[4]  = new King(Colour.BLACKS, (byte)4, (byte)0);
-    // pieces[5]  = new Bishop(Colour.BLACKS, (byte)5, (byte)0);
+    pieces[5]  = new Bishop((byte)5, Colour.BLACKS, (byte)5, (byte)0);
     // pieces[6]  = new Knight(Colour.BLACKS, (byte)6, (byte)0);
     pieces[7]  = new Rook((byte)7, Colour.BLACKS, (byte)7, (byte)1);
     pieces[24] = new Rook((byte)24, Colour.WHITES, (byte)0, (byte)7);
     // pieces[25] = new Knight(Colour.WHITES, (byte)1, (byte)7);
-    // pieces[26] = new Bishop(Colour.WHITES, (byte)2, (byte)7);
-    // pieces[27] = new Queen(Colour.WHITES, (byte)3, (byte)7);
-    // pieces[28] = new King(Colour.WHITES, (byte)4, (byte)7);
-    // pieces[29] = new Bishop(Colour.WHITES, (byte)5, (byte)7);
+    pieces[26] = new Bishop((byte)26, Colour.WHITES, (byte)2, (byte)7);
+    pieces[27] = new King((byte)27, Colour.WHITES, (byte)3, (byte)7);
+    // pieces[28] = new Queen(Colour.WHITES, (byte)3, (byte)7);
+    pieces[29] = new Bishop((byte)29, Colour.WHITES, (byte)5, (byte)7);
     // pieces[30] = new Knight(Colour.WHITES, (byte)6, (byte)7);
     pieces[31] = new Rook((byte)31,Colour.WHITES, (byte)7, (byte)7);
     
@@ -195,7 +197,30 @@ public class Board {
   public void recalcMoves() {
     for (Piece piece : pieces) {
       if (piece == null) continue;
+      if (piece.status.equals(Status.GUARDED)) 
+        piece.setStatus(Status.FREE);
+    }
+
+    for (Piece piece : pieces) {
+      if (piece == null) continue;
       piece.calcAvalableCells(this);
+    }
+
+    pieces[3].calcAvalableCells(this);
+    pieces[27].calcAvalableCells(this);
+
+    if (pieces[3].getStatus().checked()) {
+      for (byte idx = 0; idx < 16; idx++) {
+        if (pieces[idx] == null) continue;
+        pieces[idx].recalcCheckedMoves(this);
+      }
+    }
+
+    if (pieces[27].getStatus().checked()) {
+      for (byte idx = 16; idx < 32; idx++) {
+        if (pieces[idx] == null) continue;
+        pieces[idx].recalcCheckedMoves(this);
+      }
     }
   }
 

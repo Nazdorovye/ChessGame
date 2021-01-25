@@ -61,6 +61,9 @@ public class Main extends Application {
 
       gameMenu = loader.load();
       moveMenuCtrl = (MoveMenuCtrl)loader.getController();
+
+      loader = new FXMLLoader(getClass().getResource("pawntransmenu.fxml"));
+      
       
 
 

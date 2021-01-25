@@ -26,7 +26,7 @@
                               </AnchorPane>
                               <Button fx:id="startHSBtn" mnemonicParsing="false" prefHeight="45.0" prefWidth="109.0" style="-fx-background-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Start">
                                  <font>
-                                    <Font name="Comic Sans MS Bold" size="24.0" />
+                                    <Font name="Tw Cen MT Bold" size="30.0" />
                                  </font></Button>
                            </children>
                         </VBox>

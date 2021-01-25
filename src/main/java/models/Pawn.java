@@ -23,6 +23,12 @@ public class Pawn extends Piece {
    */
   @Override
   public void calcAvalableCells(Board brd) {
+    // todo: special case for pinned piece
+    if (status.pinned()) {
+      recalcCheckedMoves(brd);
+      return;
+    }
+
     // discard outdated moves
     moves.clear();
     canMove = false;
@@ -34,10 +40,7 @@ public class Pawn extends Piece {
 
     if (epsm > 0 && --epsm == 0) {
       brd.getCells()[col][row - dir].resetEnPassant();
-    }    
-    
-    // todo: special case for pinned piece
-    if (status.pinned()) return;
+    }
 
     byte nextRow = (byte)(row + dir);
     // check next cell availability

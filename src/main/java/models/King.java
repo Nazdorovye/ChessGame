@@ -57,7 +57,14 @@ public class King extends Piece {
 
             for (Move move : _piece.moves) {
               if (move.col_dest == col_dest && move.row_dest == row_dest) {
-                if (move.type.equals(Type.CHECKED)) canMove = false; // cell covered by rival piece
+                if (move.type.checked()) canMove = false; // cell covered by rival piece
+
+                if (!_piece.getClass().equals(Pawn.class)) canMove = false;
+
+                if (_piece.getClass().equals(King.class)) {
+                  _piece.getMoves().remove(move); // remove this move from another king
+                }
+
                 break;
               }
             }
@@ -66,7 +73,7 @@ public class King extends Piece {
         } else {
 
           if (piece.colour.equals(colour)) {
-            piece.status = Status.GUARDED; // guard nearby allies against rival king
+            piece.setStatus(Status.GUARDED); // guard nearby allies against rival king
             continue;
           } else if (!piece.status.guarded()) { // if not guarded, the king can take it
             moves.add(new Move(Type.TAKE, col, row, col_dest, row_dest));

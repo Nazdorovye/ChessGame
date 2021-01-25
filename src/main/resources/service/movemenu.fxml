@@ -21,13 +21,13 @@
                <children>
                   <Label fx:id="labelW" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="White">
                      <font>
-                        <Font name="Comic Sans MS Bold Italic" size="24.0" />
+                        <Font name="Tw Cen MT Bold" size="30.0" />
                      </font>
                   </Label>
                   <HBox prefHeight="39.0" prefWidth="34.0" />
                   <Label fx:id="labelB" alignment="CENTER" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Black">
                      <font>
-                        <Font name="Comic Sans MS Bold Italic" size="24.0" />
+                        <Font name="Tw Cen MT Bold" size="30.0" />
                      </font>
                   </Label>
                </children>
@@ -74,13 +74,13 @@
                <children>
                   <Button fx:id="giveUp" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Give Up!">
                      <font>
-                        <Font name="Comic Sans MS Bold" size="24.0" />
+                        <Font name="Tw Cen MT Bold" size="25.0" />
                      </font>
                   </Button>
                   <HBox fx:id="spaceBox" prefHeight="100.0" prefWidth="69.0" />
                   <Button fx:id="draw" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Draw!">
                      <font>
-                        <Font name="Comic Sans MS Bold" size="24.0" />
+                        <Font name="Tw Cen MT Bold" size="25.0" />
                      </font>
                   </Button>
                </children>

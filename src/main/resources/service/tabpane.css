@@ -20,7 +20,7 @@
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected {
-  -fx-background-color:  #754a1f;
+  -fx-background-color:   #4a3728;
   -fx-background-insets: 0;
 }
 

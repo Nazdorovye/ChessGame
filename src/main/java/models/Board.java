@@ -222,6 +222,12 @@ public class Board {
         pieces[idx].recalcCheckedMoves(this);
       }
     }
+
+    for (Piece piece : pieces) {
+      if (piece == null) continue;
+      if (piece.getStatus().pinned()) 
+        piece.recalcPinnedMoves(this);
+    }
   }
 
   public void resetBoard() {

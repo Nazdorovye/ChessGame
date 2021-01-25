@@ -9,14 +9,18 @@ import models.Piece.Status;
 
 public class Move {
   public enum Type { 
-    TRANSLATE, 
-    TAKE, 
-    PASSING, 
-    TAKEPASSING, 
+    TRANSLATE,
+    TAKE,
+    PASSING,
+    TAKEPASSING,
     CHECKED,
-    MOVE_CHECKED; 
+    MOVE_CHECKED,
+    MOVE_PINNED; 
   
-  public boolean checked() { return this.equals(CHECKED); }
+    public boolean checked() { return this.equals(CHECKED); }
+    public boolean take() { return this.equals(TAKE); }
+    public boolean takepassing() { return this.equals(TAKEPASSING); }
+    public boolean translate() { return this.equals(TAKEPASSING); }
   }
 
   public final Type type;
@@ -82,13 +86,18 @@ public class Move {
 
         case MOVE_CHECKED:
           // reset check status for the king
-          King king = (c_from.getPiece().colour.white()) ? (King)brd.getPieces()[27] : (King)brd.getPieces()[3];
+          King king = (c_from.getPiece().colour.white()) 
+              ? (King)brd.getPieces()[27] 
+              : (King)brd.getPieces()[3];
+
           king.uncheck();
           break;
         
         case CHECKED:
           return; // for king calc only
 
+        case MOVE_PINNED:
+          c_from.getPiece().setPinned(null); // potentially free, will be recalc anyways
 
         default:
           break;         

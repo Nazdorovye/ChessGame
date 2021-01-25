@@ -4,139 +4,60 @@ import service.Colour;
 import service.Move;
 
 public class Bishop extends Piece {
-    public Bishop(byte visualIdx, Colour colour, byte col, byte row) {
-        super(visualIdx, colour, col, row);
-    }
 
-    @Override
-    public void calcAvalableCells(Board brd) {
-        moves.clear();
-        if (!status.free())
-            return;
-        boolean pieceFound = false;
-        Piece potPinnedPiece = null;
+  public Bishop(byte visualIdx, Colour colour, byte col, byte row) {
+    super(visualIdx, colour, col, row);
+  }
 
-        // find out all available cells right below
-        for (int i = 1; i <= 7; i++) {
-            if((col+i) <= 7 && (row+i) <= 7){
-            if (pieceFound == true) {
-                if (brd.getCells()[col+i][row+i].getPiece() == null) {
-                    continue;
-                } 
-                else {
-                    if (brd.getCells()[col+i][row+i].getPiece().getClass() == King.class
-                            && !brd.getCells()[col+i][row+i].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } 
-            else {
-                if (brd.getCells()[col+i][row+i].getPiece() == null && (col+i) <= 7 && (row+i) <= 7) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, (byte)(col+i), (byte)(row+i)));
-                }
+  public void calculateDiagonalMoves(Board brd, Piece callee) {
+    callee.getMoves().clear();
+    if (callee.getStatus().taken()) return;
 
-                else {
-                    if (brd.getCells()[col+i][row+i].getPiece() != null
-                            && !brd.getCells()[col+i][row+i].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, (byte)(col+i), (byte)(row+i)));
-                        potPinnedPiece = brd.getCells()[col+i][row+i].getPiece();
-                    }
-                    pieceFound = true;
-                }
+    // todo: special case for pinned piece
+    if (callee.getStatus().pinned()) return;
+
+    boolean pieceFound = false;
+    Piece potPinnedPiece = null;
+
+    for (byte col_dir = -1; col_dir <= 1; col_dir += 2) {
+      for (byte row_dir = -1; row_dir <= 1; row_dir += 2) {
+        for (byte col_dest = (byte)(callee.getCol() + col_dir), 
+                  row_dest = (byte)(callee.getRow() + row_dir); 
+
+          col_dest >= 0 && col_dest <= 7 && row_dest >= 0 && row_dest <= 7;
+          col_dest += col_dir, row_dest += row_dir) {
+        
+          if (pieceFound == true) {
+            if (brd.getCells()[col_dest][row_dest].getPiece() == null) { continue; }
+            else if (brd.getCells()[col_dest][row_dest].getPiece().getClass() == King.class
+                  && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
+
+              potPinnedPiece.setStatus(Status.PINNED);
             }
-           }
-    }
+          } else if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
+            callee.getMoves().add(
+              new Move(Move.Type.TRANSLATE, callee.getCol(), callee.getRow(), col_dest, row_dest)
+            );
 
-        // find out all available cells above Rook starting position
+          } else if (brd.getCells()[col_dest][row_dest].getPiece() != null
+                 && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
+            callee.getMoves().add(
+              new Move(Move.Type.TAKE, callee.getCol(), callee.getRow(), col_dest, row_dest)
+            );
 
-        pieceFound = false;
-        for (int k = 1; k <= col; k++) {
-            if((col-k) >= 0 && (row+k) <= 7){
-            if (pieceFound == true) {
-                if (brd.getCells()[col-k][row+k].getPiece() == null) {
-                    continue;
-                } else {
-                    if (brd.getCells()[col-k][row+k].getPiece().getClass() == King.class
-                            && !brd.getCells()[col-k][row+k].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } else {
-                if (brd.getCells()[col-k][row+k].getPiece() == null && (col-k) <= 7 && (row+k) <= 7) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, (byte)(col-k), (byte)(row+k)));
-                }
-
-                else {
-                    if (brd.getCells()[col-k][row+k].getPiece() != null
-                            && !brd.getCells()[col-k][row+k].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, (byte)(col-k), (byte)(row+k)));
-                        potPinnedPiece = brd.getCells()[col-k][row+k].getPiece();
-                    }
-                    pieceFound = true;
-                }
-            }
+            potPinnedPiece = brd.getCells()[col_dest][row_dest].getPiece();
+            pieceFound = true;
+          } else {
+            pieceFound = false;
+            break;
+          }
         }
+      }
     }
+  }
 
-        // find out available cells on the left side from Rook starting position
-        pieceFound = false;
-        for (int l = 1; l <= row; l++) {
-            if((col-l) >= 0 && (row-l) >= 0){
-            if (pieceFound == true) {
-                if (brd.getCells()[col-l][row-l].getPiece() == null) {
-                    continue;
-                } else {
-                    if (brd.getCells()[col-l][row-l].getPiece().getClass() == King.class
-                            && !brd.getCells()[col-l][row-l].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } else {
-                if (brd.getCells()[col-l][row-l].getPiece() == null && (col-l) <= 7 && (row-l) <= 7) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, (byte)(col-l),(byte)(row-l)));
-                }
-
-                else {
-                    if (brd.getCells()[col-l][row-l].getPiece() != null
-                            && !brd.getCells()[col-l][row-l].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, (byte)(col-l),(byte)(row-l)));
-                        potPinnedPiece = brd.getCells()[col-l][row-l].getPiece();
-                    }
-                    pieceFound = true;
-                }
-            }
-        }
-    }
-
-        // find out available cells on the right side from Rook starting position
-        pieceFound = false;
-        for (int m = 1; m <= 7; m++) {
-            if((col+m) <= 7 && (row-m) > 0){
-            if (pieceFound == true) {
-                if (brd.getCells()[col+m][row-m].getPiece() == null) {
-                    continue;
-                } else {
-                    if (brd.getCells()[col+m][row-m].getPiece().getClass() == King.class
-                            && !brd.getCells()[col+m][row-m].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } else {
-                if (brd.getCells()[col+m][row-m].getPiece() == null) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, (byte)(col+m), (byte)(row-m)));
-                }
-
-                else {
-                    if (brd.getCells()[col+m][row-m].getPiece() != null
-                            && !brd.getCells()[col+m][row-m].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, (byte)(col+m), (byte)(row-m)));
-                        potPinnedPiece = brd.getCells()[col+m][row-m].getPiece();
-                    }
-                    pieceFound = true;
-                }
-            }
-        }
-
-    }
-    }
+  @Override
+  public void calcAvalableCells(Board brd) {
+    calculateDiagonalMoves(brd, this);
+  }
 }

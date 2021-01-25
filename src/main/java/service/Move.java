@@ -3,6 +3,7 @@ package service;
 import javafx.scene.image.ImageView;
 import models.Board;
 import models.Cell;
+import models.King;
 import models.Pawn;
 import models.Piece.Status;
 
@@ -12,7 +13,8 @@ public class Move {
     TAKE, 
     PASSING, 
     TAKEPASSING, 
-    CHECKED; 
+    CHECKED,
+    MOVE_CHECKED; 
   
   public boolean checked() { return this.equals(CHECKED); }
   }
@@ -58,7 +60,7 @@ public class Move {
       switch (type) {
         case TAKE:
             brdCtrl.setPieceTaken(vPieces[c_dest.getPiece().visualIdx]);
-            c_dest.getPiece().setStatus(Status.TAKEN);        
+            c_dest.getPiece().setStatus(Status.TAKEN);
             c_dest.resetEnPassant();
           break;
 
@@ -77,6 +79,12 @@ public class Move {
 
         case TRANSLATE:
           break;
+
+        case MOVE_CHECKED:
+          // reset check status for the king
+          King king = (c_from.getPiece().colour.white()) ? (King)brd.getPieces()[27] : (King)brd.getPieces()[3];
+          king.uncheck();
+          break;
         
         case CHECKED:
           return; // for king calc only
@@ -92,8 +100,13 @@ public class Move {
     c_dest.getPiece().setCol(col_dest);         
     c_dest.getPiece().setRow(row_dest);
 
+    // king moves - unchecks itself
+    if (c_dest.getPiece().getClass().equals(King.class)) {
+      c_dest.getPiece().setStatus(Status.FREE);
+    }
+
     // special pawn case for transform
-    if (c_dest.getPiece().getClass().isNestmateOf(Pawn.class)) {
+    if (c_dest.getPiece().getClass().equals(Pawn.class)) {
       // TODO conversion
     }
   }

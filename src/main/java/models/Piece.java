@@ -34,8 +34,11 @@ public class Piece {
   }
 
   public void calcAvalableCells(Board board) {}
+  public void recalcCheckedMoves(Board board) {}
 
   public ArrayList<Move> getMoves() { return moves; }
+
+  public boolean getCanMove() { return moves.size() > 0; }
 
   public void setRow(byte row) { this.row = row; }
   public byte getRow() { return row; }

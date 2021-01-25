@@ -381,12 +381,12 @@ public class MainBoardCtrl {
     ImageView[] result = new ImageView[32];
 
     result[0] = rookBL;
-    result[1] = bishopBL;
-    result[2] = knightBL;
+    result[1] = knightBL;
+    result[2] = bishopBL;
     result[3] = queenB;
     result[4] = kingB;
-    result[5] = knightBR;
-    result[6] = bishopBR;
+    result[5] = bishopBR;
+    result[6] = knightBR;
     result[7] = rookBR;
     result[8] = pawnBA;
     result[9] = pawnBB;
@@ -405,12 +405,12 @@ public class MainBoardCtrl {
     result[22] = pawnWG;
     result[23] = pawnWH;
     result[24] = rookWL;
-    result[25] = bishopWL;
-    result[26] = knightWL;
+    result[25] = knightWL;
+    result[26] = bishopWL;
     result[27] = queenW;
     result[28] = kingW;
-    result[29] = knightWR;
-    result[30] = bishopWR;
+    result[29] = bishopWR;
+    result[30] = knightWR;
     result[31] = rookWR;
 
     return result;

@@ -7,17 +7,7 @@ public class Rook extends Piece {
   public Rook(byte visualIdx, Colour colour, byte col, byte row) {
     super(visualIdx, colour, col, row);
   }
-
-  @Override
-  public void calcAvalableCells(Board brd) {
-    moves.clear();
-
-    if (status.taken()) return;
-
-    
-  }
-
-    /*@Override
+    @Override
     public void calcAvalableCells(Board brd) {
         moves.clear();
         if (!status.free())
@@ -137,6 +127,6 @@ public class Rook extends Piece {
             }
         }
 
-    }*/
+    }
 
 }

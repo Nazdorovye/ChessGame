@@ -5,20 +5,21 @@ import models.Board;
 import models.Cell;
 import models.King;
 import models.Pawn;
+import models.Rook;
 import models.Piece.Status;
 
 public class Move {
   public enum Type { 
     TRANSLATE,
     TAKE,
+    CASTLE,
     CHECKED,
     PASSING,
     TAKEPASSING,
-    CHECKED_DUMMY,
-    MOVE_CHECKED,
-    MOVE_PINNED; 
+    CHECKED_DUMMY; 
   
     public boolean checked() { return this.equals(CHECKED); }
+    public boolean castle() { return this.equals(CASTLE); }
     public boolean checked_dummy() { return this.equals(CHECKED_DUMMY); }
     public boolean take() { return this.equals(TAKE); }
     public boolean passing() { return this.equals(PASSING); }
@@ -86,21 +87,9 @@ public class Move {
 
         case TRANSLATE:
           break;
-
-        case MOVE_CHECKED:
-          // reset check status for the king
-          King king = (c_from.getPiece().colour.white()) 
-              ? (King)brd.getPieces()[27] 
-              : (King)brd.getPieces()[3];
-
-          king.uncheck();
-          break;
         
         case CHECKED_DUMMY:
           return; // for king calc only
-
-        case MOVE_PINNED:
-          c_from.getPiece().setPinned(null); // potentially free, will be recalc anyways
 
         default:
           break;         
@@ -112,14 +101,31 @@ public class Move {
     c_dest.getPiece().setCol(col_dest);         
     c_dest.getPiece().setRow(row_dest);
 
-    // king moves - unchecks itself
     if (c_dest.getPiece().getClass().equals(King.class)) {
-      c_dest.getPiece().setStatus(Status.FREE);
+      King king = (King)c_dest.getPiece();
+      king.moved = true;
+
+      if (type.castle()) {
+        byte rook_col_dest = (col_dest == 2) ? (byte)3 : 5;
+
+        Cell c_rook_from = brd.getCells()[(col_dest == 2) ? 0 : 7][row_dest];
+        Cell c_rook_dest = brd.getCells()[rook_col_dest][row_dest];
+        
+        brdCtrl.setPieceIndex(vPieces[c_rook_from.getPiece().visualIdx], rook_col_dest, row_dest);
+        c_rook_dest.setPiece(c_rook_from.removePiece());
+        c_rook_dest.getPiece().setCol(rook_col_dest);         
+        c_rook_dest.getPiece().setRow(row_dest);
+      }
+    }
+
+    if (c_dest.getPiece().getClass().equals(Rook.class)) {
+      Rook rook = (Rook)c_dest.getPiece();
+      rook.moved = true;
     }
 
     // special pawn case for transform
     if (c_dest.getPiece().getClass().equals(Pawn.class)) {
-      // TODO conversion
+      Pawn pawn = (Pawn)c_dest.getPiece();
     }
   }
 }

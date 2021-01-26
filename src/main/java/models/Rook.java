@@ -7,6 +7,9 @@ import service.Move;
 import service.Move.Type;
 
 public class Rook extends Piece {
+  public boolean moved = false;
+  public boolean castle = false;
+
   public Rook(byte visualIdx, Colour colour, byte col, byte row) {
     super(visualIdx, colour, col, row);
   }
@@ -17,6 +20,7 @@ public class Rook extends Piece {
     boolean pieceFound = false;
     boolean kingFound = false;
     Piece potPinnedPiece = null;
+    Piece piece;
     ArrayList<Move> colCheckedMoves = new ArrayList<Move>();
 
     for (byte col_dir = -1, row_dir = 0, directions = 4, col_mod = 1, row_mod = 1; directions > 0; directions--) {
@@ -41,7 +45,8 @@ public class Rook extends Piece {
         col_dest += col_dir, row_dest += row_dir) {
 
         // this iterates after rival king was found
-        if (kingFound && brd.getCells()[col_dest][row_dest].getPiece() == null) {
+        piece = brd.getCells()[col_dest][row_dest].getPiece();
+        if (kingFound && piece == null) {
             callee.moves.add(
               new Move(Move.Type.CHECKED_DUMMY, callee.getCol(), callee.getRow(), col_dest, row_dest)
             );
@@ -50,19 +55,25 @@ public class Rook extends Piece {
 
         if (!pieceFound) {
           // no first piece found, accumulate moves
-          if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
+          if (piece == null) {
             colCheckedMoves.add(
               new Move(Move.Type.TRANSLATE, callee.getCol(), callee.getRow(), col_dest, row_dest)
             );
 
           // did first find ally piece - add accumulated moves to moves list and iterate next direction
-          } else if (brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
-            brd.getCells()[col_dest][row_dest].getPiece().setStatus(Status.GUARDED);
+          } else if (piece.colour.equals(callee.colour)) {
+            if (piece.getClass().equals(King.class) && callee.getClass().equals(Rook.class)) {
+              Rook thisRook = (Rook)callee;
+              if (!thisRook.moved) 
+                thisRook.castle =  true;
+            } else {
+              piece.setStatus(Status.GUARDED);
+            }
             break;
 
           // first found piece is rival king 
-          } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)) {
-            King king = (King)brd.getCells()[col_dest][row_dest].getPiece();
+          } else if (piece.getClass().equals(King.class)) {
+            King king = (King)piece;
             king.assignCheckedPiece(callee);
 
             for (Move move : colCheckedMoves) move.type = Type.CHECKED;
@@ -87,14 +98,13 @@ public class Rook extends Piece {
         } else {
 
           // empty cell after rival piece, no use
-          if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
+          if (piece == null) {
             colCheckedMoves.add(
               new Move(Move.Type.CHECKED_DUMMY, callee.getCol(), callee.getRow(), col_dest, row_dest)
             );
 
           // rival king found after rival piece - pin rival piece
-          } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)
-                && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
+          } else if (piece.getClass().equals(King.class) && !piece.colour.equals(callee.colour)) {
             
             potPinnedPiece.setPinned(colCheckedMoves);
             break;
@@ -113,6 +123,7 @@ public class Rook extends Piece {
   @Override
   public void calcAvalableCells(Board brd) {
     moves.clear();
+    castle = false;
     calculateLeveledMoves(brd, this);
   }
 }

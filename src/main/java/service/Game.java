@@ -1,5 +1,9 @@
 package service;
 
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import models.Board;
 
@@ -18,6 +22,7 @@ public class Game {
 
   public final MainBoardCtrl boardCtrl;
   private Board gameBoard;
+  private Node transMenu;
   private GameState gameState;
   private TurnState turnState;
   private Colour playerTurn;
@@ -54,8 +59,39 @@ public class Game {
 
   }
 
-  public Game(MainBoardCtrl boardCtrl) {
+  public void showChooseMenu(boolean white, EventHandler<? super MouseEvent> handler) {
+    boardCtrl.getChooserPane().getChildren().clear();
+    boardCtrl.getChooserPane().getChildren().add(transMenu);
+
+    GridPane tmen = (GridPane)transMenu;
+    ImageView rk, bi, kn, qn;
+
+    if (white) {
+      rk = new ImageView(getClass().getResource("Chess_rlt60.png").toString());
+      bi = new ImageView(getClass().getResource("Chess_blt60.png").toString());
+      kn = new ImageView(getClass().getResource("Chess_klt60.png").toString());
+      qn = new ImageView(getClass().getResource("Chess_qlt60.png").toString());
+    } else {
+      rk = new ImageView(getClass().getResource("Chess_rdt60.png").toString());
+      bi = new ImageView(getClass().getResource("Chess_bdt60.png").toString());
+      kn = new ImageView(getClass().getResource("Chess_kdt60.png").toString());
+      qn = new ImageView(getClass().getResource("Chess_qdt60.png").toString());
+    }
+
+    rk.setOnMousePressed(handler);
+    bi.setOnMousePressed(handler);
+    kn.setOnMousePressed(handler);
+    qn.setOnMousePressed(handler);
+
+    tmen.add(rk, 0, 0);
+    tmen.add(bi, 1, 0);
+    tmen.add(kn, 0, 1);
+    tmen.add(qn, 1, 1);
+  }
+
+  public Game(MainBoardCtrl boardCtrl, Node transMenu) {
     this.boardCtrl = boardCtrl;
+    this.transMenu = transMenu;
     gameBoard = new Board(this, boardCtrl);
     reset();
   }

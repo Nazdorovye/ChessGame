@@ -11,23 +11,26 @@ public class Move {
   public enum Type { 
     TRANSLATE,
     TAKE,
+    CHECKED,
     PASSING,
     TAKEPASSING,
-    CHECKED,
+    CHECKED_DUMMY,
     MOVE_CHECKED,
     MOVE_PINNED; 
   
     public boolean checked() { return this.equals(CHECKED); }
+    public boolean checked_dummy() { return this.equals(CHECKED_DUMMY); }
     public boolean take() { return this.equals(TAKE); }
+    public boolean passing() { return this.equals(PASSING); }
     public boolean takepassing() { return this.equals(TAKEPASSING); }
-    public boolean translate() { return this.equals(TAKEPASSING); }
+    public boolean translate() { return this.equals(TRANSLATE); }
   }
 
-  public final Type type;
   public final byte row_from;
   public final byte col_from;
   public final byte row_dest;
   public final byte col_dest;
+  public Type type;
 
   public Move(Type type, byte col_from, byte row_from, byte col_dest, byte row_dest) {
     this.type = type;
@@ -93,7 +96,7 @@ public class Move {
           king.uncheck();
           break;
         
-        case CHECKED:
+        case CHECKED_DUMMY:
           return; // for king calc only
 
         case MOVE_PINNED:

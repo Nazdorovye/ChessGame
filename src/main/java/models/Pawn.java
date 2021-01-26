@@ -122,7 +122,7 @@ public class Pawn extends Piece {
         if (riv_move.col_dest == move.col_dest && riv_move.row_dest == move.row_dest
             && riv_move.type.checked() && (move.type.translate() || move.type.passing())) {
 
-          new_moves.add(new Move(Type.MOVE_CHECKED, col, row, move.col_dest, move.row_dest));
+          new_moves.add(new Move(Type.TRANSLATE, col, row, move.col_dest, move.row_dest));
         } 
       }      
     }

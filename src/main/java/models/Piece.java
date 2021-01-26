@@ -62,15 +62,14 @@ public class Piece {
 
     for (Move move : moves) {
       // keep take move
-      if (brd.getCells()[move.col_dest][move.row_dest].getPiece() != null 
-          && brd.getCells()[move.col_dest][move.row_dest].getPiece().equals(piece)) {
+      if (move.col_dest == piece.getCol() && move.row_dest == piece.getRow() && move.type.take()) {
         new_moves.add(move);
       }
 
       for (Move riv_move : piece.moves) {
         // compare if any rival piece move can be intersected thus blocking check
         if (riv_move.col_dest == move.col_dest && riv_move.row_dest == move.row_dest
-            && riv_move.type.translate()) {
+            && riv_move.type.checked()) {
 
           new_moves.add(move);
         } 
@@ -94,11 +93,11 @@ public class Piece {
   public void setPinned(ArrayList<Move> pinMoves) {
     if (pinMoves != null) {
       status = status.equals(Status.GUARDED) ? Status.PINGUARD : Status.PINNED;
+      this.pinMoves.addAll(pinMoves);
     } else {
+      this.pinMoves.clear();
       status = status.equals(Status.PINGUARD) ? Status.GUARDED : Status.FREE;
     }
-
-    this.pinMoves = pinMoves;
   }
 
   public void setStatus(Status status) {

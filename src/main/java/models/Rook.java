@@ -1,132 +1,118 @@
 package models;
 
+import java.util.ArrayList;
+
 import service.Colour;
 import service.Move;
+import service.Move.Type;
 
 public class Rook extends Piece {
   public Rook(byte visualIdx, Colour colour, byte col, byte row) {
     super(visualIdx, colour, col, row);
   }
-    @Override
-    public void calcAvalableCells(Board brd) {
-        moves.clear();
-        if (!status.free())
-            return;
-        boolean pieceFound = false;
-        Piece potPinnedPiece = null;
 
-        // find out all available cells below Rook starting position
-        for (int i = row + 1; i <= 7; i++) {
-            if (pieceFound == true) {
-                if (brd.getCells()[col][i].getPiece() == null) {
-                    continue;
-                } else {
-                    if (brd.getCells()[col][i].getPiece().getClass() == King.class
-                            && !brd.getCells()[col][i].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } else {
-                if (brd.getCells()[col][i].getPiece() == null) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, col, (byte) (i)));
-                }
+  public static void calculateLeveledMoves(Board brd, Piece callee) {
+    if (callee.getStatus().taken()) return;
 
-                else {
-                    if (brd.getCells()[col][i].getPiece() != null
-                            && !brd.getCells()[col][i].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, col, (byte) (i)));
-                        potPinnedPiece = brd.getCells()[col][i].getPiece();
-                    }
-                    pieceFound = true;
-                }
-            }
+    boolean pieceFound = false;
+    boolean kingFound = false;
+    Piece potPinnedPiece = null;
+    ArrayList<Move> colCheckedMoves = new ArrayList<Move>();
+
+    for (byte col_dir = -1, row_dir = 0, directions = 4, col_mod = 1, row_mod = 1; directions > 0; directions--) {
+        
+      // 0 -> 1 -> 0 -> -1 -> 0 ...
+      if (col_dir + col_mod == 2) col_mod = -1; // reached top, now count down
+      else if (col_dir + col_mod == -2) col_mod = 1; // reached bot, now count up
+
+      if (row_dir + row_mod == 2) row_mod = -1; // reached top, now count down
+      else if (row_dir + row_mod == -2) row_mod = 1; // reached bot, now count up
+
+      col_dir += col_mod;
+      row_dir += row_mod;
+      pieceFound = false;
+      kingFound = false;
+    
+      colCheckedMoves.clear();
+
+      for (byte col_dest = (byte)(callee.getCol() + col_dir), 
+                row_dest = (byte)(callee.getRow() + row_dir);                
+        col_dest >= 0 && col_dest <= 7 && row_dest >= 0 && row_dest <= 7;
+        col_dest += col_dir, row_dest += row_dir) {
+
+        // this iterates after rival king was found
+        if (kingFound && brd.getCells()[col_dest][row_dest].getPiece() == null) {
+            callee.moves.add(
+              new Move(Move.Type.CHECKED_DUMMY, callee.getCol(), callee.getRow(), col_dest, row_dest)
+            );
+            continue;
         }
 
-        // find out all available cells above Rook starting position
+        if (!pieceFound) {
+          // no first piece found, accumulate moves
+          if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
+            colCheckedMoves.add(
+              new Move(Move.Type.TRANSLATE, callee.getCol(), callee.getRow(), col_dest, row_dest)
+            );
 
-        pieceFound = false;
-        for (int k = 1; k <= row; k++) {
-            if (pieceFound == true) {
-                if (brd.getCells()[col][(byte)(row-k)].getPiece() == null) {
-                    continue;
-                } else {
-                    if (brd.getCells()[col][(byte)(row-k)].getPiece().getClass() == King.class
-                            && !brd.getCells()[col][(byte)(row-k)].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } else {
-                if (brd.getCells()[col][(byte)(row-k)].getPiece() == null) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, col, (byte)(row-k)));
-                }
+          // did first find ally piece - add accumulated moves to moves list and iterate next direction
+          } else if (brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
+            brd.getCells()[col_dest][row_dest].getPiece().setStatus(Status.GUARDED);
+            break;
 
-                else {
-                    if (brd.getCells()[col][(byte)(row-k)].getPiece() != null
-                            && !brd.getCells()[col][(byte)(row-k)].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, col, (byte) (row - k)));
-                        potPinnedPiece = brd.getCells()[col][(byte)(row-k)].getPiece();
-                    }
-                    pieceFound = true;
-                }
-            }
+          // first found piece is rival king 
+          } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)) {
+            King king = (King)brd.getCells()[col_dest][row_dest].getPiece();
+            king.assignCheckedPiece(callee);
+
+            for (Move move : colCheckedMoves) move.type = Type.CHECKED;
+
+            kingFound = true;
+            continue;
+
+          // first found piece is rival non-king 
+          } else {
+            callee.getMoves().addAll(colCheckedMoves); // anyways valid moves before piece
+            colCheckedMoves.clear(); // clear to collect pinned moves after piece
+            
+            callee.getMoves().add(
+              new Move(Move.Type.TAKE, callee.getCol(), callee.getRow(), col_dest, row_dest)
+              );
+              
+            potPinnedPiece = brd.getCells()[col_dest][row_dest].getPiece();
+            pieceFound = true;
+          }
+
+        // first rival piece found
+        } else {
+
+          // empty cell after rival piece, no use
+          if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
+            colCheckedMoves.add(
+              new Move(Move.Type.CHECKED_DUMMY, callee.getCol(), callee.getRow(), col_dest, row_dest)
+            );
+
+          // rival king found after rival piece - pin rival piece
+          } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)
+                && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
+            
+            potPinnedPiece.setPinned(colCheckedMoves);
+            break;
+
+          // any non-king piece
+          } else {
+            break;
+          }
         }
+      }
 
-        // find out available cells on the left side from Rook starting position
-        pieceFound = false;
-        for (int l = 1; l <= col; l++) {
-            if (pieceFound == true) {
-                if (brd.getCells()[col - l][row].getPiece() == null) {
-                    continue;
-                } else {
-                    if (brd.getCells()[col - l][row].getPiece().getClass() == King.class
-                            && !brd.getCells()[col - l][row].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } else {
-                if (brd.getCells()[col - l][row].getPiece() == null) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, (byte) (col - l), row));
-                }
-
-                else {
-                    if (brd.getCells()[col - l][row].getPiece() != null
-                            && !brd.getCells()[col - l][row].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, (byte) (col - l), row));
-                        potPinnedPiece = brd.getCells()[col - l][row].getPiece();
-                    }
-                    pieceFound = true;
-                }
-            }
-        }
-
-        // find out available cells on the right side from Rook starting position
-        pieceFound = false;
-        for (int m = col + 1; m <= 7; m++) {
-            if (pieceFound == true) {
-                if (brd.getCells()[m][row].getPiece() == null) {
-                    continue;
-                } else {
-                    if (brd.getCells()[m][row].getPiece().getClass() == King.class
-                            && !brd.getCells()[m][row].getPiece().colour.equals(colour)) {
-                        potPinnedPiece.setStatus(Status.PINNED);
-                    }
-                }
-            } else {
-                if (brd.getCells()[m][row].getPiece() == null) {
-                    moves.add(new Move(Move.Type.TRANSLATE, col, row, (byte) (m), row));
-                }
-
-                else {
-                    if (brd.getCells()[m][row].getPiece() != null
-                            && !brd.getCells()[m][row].getPiece().colour.equals(colour)) {
-                        moves.add(new Move(Move.Type.TAKE, col, row, (byte) (m), row));
-                        potPinnedPiece = brd.getCells()[m][row].getPiece();
-                    }
-                    pieceFound = true;
-                }
-            }
-        }
-
+      callee.moves.addAll(colCheckedMoves);
     }
+  }
 
+  @Override
+  public void calcAvalableCells(Board brd) {
+    moves.clear();
+    calculateLeveledMoves(brd, this);
+  }
 }

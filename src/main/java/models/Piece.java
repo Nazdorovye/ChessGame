@@ -37,6 +37,8 @@ public class Piece {
     this.colour = colour;
     this.status = Status.FREE;
   }
+
+  public void forceStatus(Status status) { this.status = status; }
   
   public void calcAvalableCells(Board board) {}
 
@@ -118,6 +120,7 @@ public class Piece {
         break;
 
       default:
+        if (this.status.checked()) break;
         this.status = status;
     }
   }

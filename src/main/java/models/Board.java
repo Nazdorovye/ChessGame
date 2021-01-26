@@ -37,7 +37,7 @@ public class Board {
     for (Move move : availableMoves) {
       if (!clear) {
         switch (move.type) {
-          case MOVE_CHECKED: mrk = Mark.PINNED; break;
+          case MOVE_CHECKED: mrk = Mark.MOVE; break;
           case TAKE: mrk = Mark.TAKE; break;
           case TAKEPASSING: mrk = Mark.TAKE; break;
           case PASSING: mrk = Mark.MOVE; break;

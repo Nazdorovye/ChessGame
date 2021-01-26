@@ -15,34 +15,31 @@ public class Bishop extends Piece {
 
     boolean pieceFound = false;
     Piece potPinnedPiece = null;
+    ArrayList<Move> colCheckedMoves = new ArrayList<Move>();
 
     for (byte col_dir = -1; col_dir <= 1; col_dir += 2) {
       for (byte row_dir = -1; row_dir <= 1; row_dir += 2) {
+        colCheckedMoves.clear();
+
         for (byte col_dest = (byte)(callee.getCol() + col_dir), 
-                  row_dest = (byte)(callee.getRow() + row_dir),
-                  step = 0;
+                  row_dest = (byte)(callee.getRow() + row_dir);
 
           col_dest >= 0 && col_dest <= 7 && row_dest >= 0 && row_dest <= 7;
-          col_dest += col_dir, row_dest += row_dir, step++) {
+          col_dest += col_dir, row_dest += row_dir) {
         
           if (pieceFound == true) {
 
             if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
-              callee.getMoves().add(
+              colCheckedMoves.add(
                 new Move(Move.Type.CHECKED, callee.getCol(), callee.getRow(), col_dest, row_dest)
               );
               potPinnedPiece.setPinned(null);
               continue; 
 
-            } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass() == King.class
+            } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)
                   && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
-
-              ArrayList<Move> mv = new ArrayList<Move>();
-              for (int i = callee.getMoves().size() - step; i < callee.getMoves().size(); i++){
-                mv.add(callee.getMoves().get(i));
-              }
-
-              potPinnedPiece.setPinned(mv);
+              callee.getMoves().addAll(colCheckedMoves);
+              potPinnedPiece.setPinned(colCheckedMoves);
             } 
 
             pieceFound = false;
@@ -53,7 +50,8 @@ public class Bishop extends Piece {
               new Move(Move.Type.TRANSLATE, callee.getCol(), callee.getRow(), col_dest, row_dest)
             );
 
-          } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)) {
+          } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)
+                && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
             King king = (King)brd.getCells()[col_dest][row_dest].getPiece();
             king.assignCheckedPiece(callee);
             pieceFound = false;

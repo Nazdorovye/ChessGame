@@ -81,6 +81,7 @@ public class Piece {
   }
 
   public ArrayList<Move> getMoves() { return moves; }
+  public ArrayList<Move> getPinMoves() { return pinMoves; }
 
   public boolean getCanMove() { return moves.size() > 0; }
 

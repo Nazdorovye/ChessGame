@@ -12,52 +12,58 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainPane" prefHeight="680.0" prefWidth="468.0" style="-fx-background-color: #cc9966; -fx-border-color: #4a3728; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MoveMenuCtrl">
+<Pane fx:id="mainPane" prefHeight="680.0" prefWidth="468.0" style="-fx-background-color: #cc9966; -fx-border-color: #4a3728; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MoveMenuCtrl">
    <children>
-      <VBox fx:id="mainVbox" alignment="TOP_CENTER" prefHeight="670.0" prefWidth="460.0">
+      <VBox fx:id="mainVbox" alignment="TOP_CENTER" fillWidth="false" prefHeight="670.0" prefWidth="460.0">
          <children>
-            <HBox prefHeight="16.0" prefWidth="460.0" />
+            <HBox alignment="CENTER" prefHeight="16.0" prefWidth="460.0" />
             <HBox fx:id="colorBox" alignment="CENTER" prefHeight="40.0" prefWidth="435.0">
                <children>
-                  <Label fx:id="labelW" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="White">
+                  <Label fx:id="labelW" alignment="CENTER" contentDisplay="CENTER" maxHeight="35.0" maxWidth="200.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="White">
                      <font>
                         <Font name="Tw Cen MT Bold" size="30.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="39.0" prefWidth="34.0" />
-                  <Label fx:id="labelB" alignment="CENTER" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Black">
+                  <HBox fx:id="colorBoxBuffer" fillHeight="false" prefHeight="39.0" prefWidth="34.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></HBox>
+                  <Label fx:id="labelB" alignment="CENTER" maxHeight="35.0" maxWidth="200.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Black">
                      <font>
                         <Font name="Tw Cen MT Bold" size="30.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
             <HBox fx:id="timerBox" alignment="CENTER" prefHeight="57.0" prefWidth="403.0">
                <children>
-                  <Label fx:id="timerW" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 ); -fx-border-width: 5;" text="Timer">
+                  <Label fx:id="timerW" alignment="CENTER" maxHeight="40.0" maxWidth="217.0" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 ); -fx-border-width: 5;" text="Timer">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Label>
-                  <Label fx:id="timerB" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 ); -fx-border-width: 5;" text="Timer">
+                  <Label fx:id="timerB" alignment="CENTER" maxHeight="40.0" maxWidth="217.0" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #fff4c2; -fx-border-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 ); -fx-border-width: 5;" text="Timer">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="365.0" prefWidth="460.0" style="-fx-border-color: #cc9966; -fx-border-width: 3;">
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="365.0" prefWidth="438.0" style="-fx-border-color: #cc9966; -fx-border-width: 3;">
               <content>
-                <AnchorPane fx:id="scrollApane" minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="455.0">
+                <AnchorPane fx:id="scrollApane" minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="399.0">
                      <children>
-                        <TableView fx:id="moveTable" layoutX="-2.0" layoutY="-3.0" prefHeight="455.0" prefWidth="445.0" style="-fx-background-color: #bdf2db;" styleClass="column-header" stylesheets="@tableview.css" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-2.0">
+                        <TableView fx:id="moveTable" layoutX="-2.0" layoutY="-3.0" prefHeight="415.0" prefWidth="448.0" style="-fx-background-color: #bdf2db;" styleClass="column-header" stylesheets="@tableview.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                              <TableColumn fx:id="columnNr" prefWidth="42.0" text="Nr" />
-                            <TableColumn fx:id="tableW" prefWidth="185.0" text="Moves" />
-                            <TableColumn fx:id="tableB" prefWidth="185.0" text="Moves" />
+                              <TableColumn fx:id="columnNr" editable="false" prefWidth="42.0" sortable="false" text="Nr" />
+                            <TableColumn fx:id="tableW" editable="false" prefWidth="185.0" sortable="false" text="Moves" />
+                            <TableColumn fx:id="tableB" editable="false" prefWidth="185.0" sortable="false" text="Moves" />
                           </columns>
                            <padding>
-                              <Insets left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <opaqueInsets>
                               <Insets />
@@ -70,20 +76,29 @@
                   <Insets left="7.0" right="5.0" />
                </VBox.margin>
             </ScrollPane>
-            <HBox fx:id="buttonBox" alignment="CENTER" prefHeight="195.0" prefWidth="453.0">
+            <HBox fx:id="buttonBox" alignment="BOTTOM_CENTER" prefHeight="195.0" prefWidth="453.0">
                <children>
-                  <Button fx:id="giveUp" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Give Up!">
+                  <Button fx:id="giveUp" maxHeight="50.0" maxWidth="145.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Give Up!">
                      <font>
                         <Font name="Tw Cen MT Bold" size="25.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" />
+                     </HBox.margin>
                   </Button>
                   <HBox fx:id="spaceBox" prefHeight="100.0" prefWidth="69.0" />
-                  <Button fx:id="draw" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Draw!">
+                  <Button fx:id="draw" maxHeight="50.0" maxWidth="145.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #fff4c2; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Draw!">
                      <font>
                         <Font name="Tw Cen MT Bold" size="25.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" />
+                     </HBox.margin>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>

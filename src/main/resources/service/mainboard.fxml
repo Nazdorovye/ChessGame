@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MainBoardCtrl">
+<Pane fx:id="root" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MainBoardCtrl">
    <children>
       <Pane fx:id="aspect" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #aaf0d1;">
          <children>
@@ -192,7 +192,7 @@
                               <Pane fx:id="pn36" style="-fx-background-color: #cc9966;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                               <Pane fx:id="pn67" style="-fx-background-color: #cc9966;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
                               <Pane fx:id="pn76" style="-fx-background-color: #cc9966;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-                              <Pane fx:id="pn00" style="-fx-background-color: #fff4c2;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                              <Pane fx:id="pn00" style="-fx-background-color: #fff4c2;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                               <Pane fx:id="pn07" layoutX="10.0" layoutY="241.0" style="-fx-background-color: #cc9966;" GridPane.rowIndex="7" />
                               <ImageView fx:id="rookWL" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="7">
                                  <image>
@@ -209,12 +209,12 @@
                                     <Image url="@Chess_blt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="kingW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
+                              <ImageView fx:id="queenW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_qlt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="queenW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
+                              <ImageView fx:id="kingW" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_klt60.png" />
                                  </image>
@@ -289,12 +289,12 @@
                                     <Image url="@Chess_bdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="kingB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                              <ImageView fx:id="queenB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_qdt60.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="queenB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                              <ImageView fx:id="kingB" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                  <image>
                                     <Image url="@Chess_kdt60.png" />
                                  </image>
@@ -450,7 +450,7 @@
             </VBox>
             <AnchorPane fx:id="takenAnchor" layoutX="710.0" layoutY="20.0">
                <children>
-                  <VBox fx:id="takenVBox" alignment="TOP_CENTER" prefHeight="680.0" prefWidth="22.0" style="-fx-background-color: #cc9966; -fx-border-color: #4a3728; -fx-border-width: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                  <VBox fx:id="takenVBox" alignment="TOP_CENTER" prefHeight="680.0" prefWidth="22.0" style="-fx-background-color: #cc9966; -fx-border-color: #4a3728; -fx-border-width: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>            
             <AnchorPane fx:id="utilPane" layoutX="762.0" layoutY="20.0" prefHeight="680.0" prefWidth="498.0" />

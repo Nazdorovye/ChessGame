@@ -84,6 +84,7 @@ public class MainBoardCtrl {
 
   @FXML private AnchorPane utilPane;
   @FXML private AnchorPane takenAnchor;
+  @FXML private AnchorPane chooserPane;
   @FXML private Pane root;
   @FXML private Pane aspect;
   @FXML private HBox charTop;
@@ -270,6 +271,14 @@ public class MainBoardCtrl {
     right6.prefHeightProperty().bind(topA.widthProperty());
     right7.prefHeightProperty().bind(topA.widthProperty());
     right8.prefHeightProperty().bind(topA.widthProperty());
+
+    AnchorPane.setBottomAnchor(chooserPane, .0);
+    AnchorPane.setTopAnchor(chooserPane, .0);
+    AnchorPane.setLeftAnchor(chooserPane, .0);
+    AnchorPane.setRightAnchor(chooserPane, .0);
+
+    chooserPane.prefHeightProperty().bind(aspect.heightProperty().multiply(0.222));
+    chooserPane.prefWidthProperty().bind(chooserPane.heightProperty());
   }
 
   
@@ -339,6 +348,7 @@ public class MainBoardCtrl {
   public Pane getUtilPane() { return utilPane; }
   public GridPane getGridPane() { return board; }
   public VBox getTakenBox() { return takenVBox; }
+  public AnchorPane getChooserPane() { return chooserPane; }
 
   public ImageView getRookWR() { return rookWR; }
   public ImageView getRookWL() { return rookWL; }

@@ -34,7 +34,8 @@ public class Knight extends Piece {
 
           // found the rival king
           } else if (piece.getClass().equals(King.class)) {
-            piece.setStatus(Status.CHECKED);
+            King king = (King)piece;
+            king.assignCheckedPiece(this);
 
           // found any other rival piece
           } else {

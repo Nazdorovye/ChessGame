@@ -37,7 +37,7 @@ public class Board {
     for (Move move : availableMoves) {
       if (!clear) {
         switch (move.type) {
-          case MOVE_CHECKED: mrk = Mark.MOVE; break;
+          case CASTLE: mrk = Mark.CASTLE; break;
           case TAKE: mrk = Mark.TAKE; break;
           case TAKEPASSING: mrk = Mark.TAKE; break;
           case PASSING: mrk = Mark.MOVE; break;
@@ -162,16 +162,16 @@ public class Board {
     pieces[0]  = new Rook((byte)0,Colour.BLACKS, (byte)0, (byte)0);
     pieces[1]  = new Knight((byte)1, Colour.BLACKS, (byte)1, (byte)0);
     pieces[2]  = new Bishop((byte)2, Colour.BLACKS, (byte)2, (byte)0);
-    pieces[3]  = new King((byte)3, Colour.BLACKS, (byte)3, (byte)0);
-    pieces[4]  = new Queen((byte)4, Colour.BLACKS, (byte)4, (byte)0);
+    pieces[3]  = new Queen((byte)3, Colour.BLACKS, (byte)3, (byte)0);
+    pieces[4]  = new King((byte)4, Colour.BLACKS, (byte)4, (byte)0);
     pieces[5]  = new Bishop((byte)5, Colour.BLACKS, (byte)5, (byte)0);
     pieces[6]  = new Knight((byte)6, Colour.BLACKS, (byte)6, (byte)0);
     pieces[7]  = new Rook((byte)7, Colour.BLACKS, (byte)7, (byte)1);
     pieces[24] = new Rook((byte)24, Colour.WHITES, (byte)0, (byte)7);
     pieces[25] = new Knight((byte)25, Colour.WHITES, (byte)1, (byte)7);
     pieces[26] = new Bishop((byte)26, Colour.WHITES, (byte)2, (byte)7);
-    pieces[27] = new King((byte)27, Colour.WHITES, (byte)3, (byte)7);
-    pieces[28] = new Queen((byte)28, Colour.WHITES, (byte)4, (byte)7);
+    pieces[27] = new Queen((byte)27, Colour.WHITES, (byte)3, (byte)7);
+    pieces[28] = new King((byte)28, Colour.WHITES, (byte)4, (byte)7);
     pieces[29] = new Bishop((byte)29, Colour.WHITES, (byte)5, (byte)7);
     pieces[30] = new Knight((byte)30, Colour.WHITES, (byte)6, (byte)7);
     pieces[31] = new Rook((byte)31,Colour.WHITES, (byte)7, (byte)7);
@@ -206,9 +206,8 @@ public class Board {
   public void recalcMoves() {
     for (Piece piece : pieces) {
       if (piece == null) continue;
-      if (piece.status.equals(Status.GUARDED)) 
-        piece.setStatus(Status.FREE);
-        piece.getPinMoves().clear();
+      if (!piece.status.taken()) piece.forceStatus(Status.FREE);
+      piece.getPinMoves().clear();
     }
 
     for (Piece piece : pieces) {

@@ -65,7 +65,7 @@ public class Pawn extends Piece {
         cell = brd.getCells()[nextCol][nextRow]; // cell under take/ take on pass
 
         if (cell.getPassing() == null) { // if cell is free, disallow the rival king to move here
-          moves.add(new Move(Type.CHECKED, col, row, nextCol, nextRow)); // add dummy move for rival king
+          moves.add(new Move(Type.CHECKED_DUMMY, col, row, nextCol, nextRow)); // add dummy move for rival king
           // no canMove here, because pawn does not translate diagonally without take
         }
         
@@ -111,22 +111,16 @@ public class Pawn extends Piece {
     // iterate through all previously calculated moves
     for (Move move : moves) {
       // keep take move
-      if (brd.getCells()[move.col_dest][move.row_dest].getPassing() != null 
-          && brd.getCells()[move.col_dest][move.row_dest].getPassing().equals(piece)) {
-
-        // keep take on pass
-        if (brd.getCells()[move.col_dest][move.row_dest].getEnPassant()) {
-          new_moves.add(new Move(Type.TAKEPASSING, col, row, move.col_dest, move.row_dest));
-        } else {
-          new_moves.add(new Move(Type.TAKE, col, row, piece.col, piece.row));
-        }
+      if ((move.col_dest == piece.getCol() && move.row_dest == piece.getRow()) &&
+          (move.type.takepassing() || move.type.take())) {
+        new_moves.add(move);
       }
 
       // iterate through checked piece moves
       for (Move riv_move : piece.moves) {
         // compare if any rival piece move can be intersected thus blocking check
         if (riv_move.col_dest == move.col_dest && riv_move.row_dest == move.row_dest
-            && riv_move.type.equals(Type.TRANSLATE)) {
+            && riv_move.type.checked() && (move.type.translate() || move.type.passing())) {
 
           new_moves.add(new Move(Type.MOVE_CHECKED, col, row, move.col_dest, move.row_dest));
         } 
@@ -134,6 +128,7 @@ public class Pawn extends Piece {
     }
 
     moves = new_moves;
+    canMove = moves.size() > 0;
   }
 
   /**

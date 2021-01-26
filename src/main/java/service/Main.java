@@ -14,9 +14,11 @@ public class Main extends Application {
   private static MainBoardCtrl boardCtrl;
   private static MainMenuCtrl mainMenuCtrl;
   private static MoveMenuCtrl moveMenuCtrl;
+  private static PawnTransMenuCtrl transMenuCtrl;
   private Scene scene;
   private Node mainMenu;
   private Node gameMenu;
+  private Node transMenu;
   private Game game;
 
 
@@ -64,8 +66,8 @@ public class Main extends Application {
 
       loader = new FXMLLoader(getClass().getResource("pawntransmenu.fxml"));
       
-      
-
+      transMenu = loader.load();
+      transMenuCtrl = (PawnTransMenuCtrl)loader.getController();      
 
     } catch(Exception e) {
       System.out.print(e.getMessage());
@@ -81,12 +83,12 @@ public class Main extends Application {
     }
 
     stage.setScene(scene);
-    stage.minWidthProperty().set(854.);
-    stage.minHeightProperty().set(480.);
+    stage.minWidthProperty().set(1280.);
+    stage.minHeightProperty().set(720.);
     stage.show();
 
     swapMenuPanel(mainMenu); // set side panel to main menu
-    game = new Game(boardCtrl);
+    game = new Game(boardCtrl, transMenu);
   }
 
   public static void main(String[] args) {

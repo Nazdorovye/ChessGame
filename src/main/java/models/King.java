@@ -13,7 +13,7 @@ public class King extends Piece {
 
   public void assignCheckedPiece(Piece piece) {
     if (piece == null) return;
-    status = Status.CHECKED;
+    setStatus(Status.CHECKED);
     checkedPiece = piece;
   }
 
@@ -57,7 +57,7 @@ public class King extends Piece {
 
             for (Move move : _piece.moves) {
               if (move.col_dest == col_dest && move.row_dest == row_dest) {
-                if (move.type.checked()) canMove = false; // cell covered by rival piece
+                if (move.type.checked_dummy()) canMove = false; // cell covered by rival piece
 
                 if (!_piece.getClass().equals(Pawn.class)) canMove = false;
 

@@ -4,60 +4,44 @@ import service.Colour;
 import service.Move;
 
 public class Knight extends Piece {
-
     public Knight(byte visualIdx, Colour colour, byte col, byte row) {
     super(visualIdx, colour, col, row);
   }
 
-  public void calculateKnightMoves(Board brd, Piece callee) {
-    callee.getMoves().clear();
-    if (callee.getStatus().taken()) return;
-
-    // todo: special case for pinned piece
-    if (callee.getStatus().pinned()) return;
-
-    boolean pieceFound = false;
-    Piece potPinnedPiece = null;
-
-    for (byte col_dir = -2; col_dir <= 2; col_dir++) {
-      for (byte row_dir = -2; row_dir <= 2; row_dir++) {
-        if (row_dir == 0 || col_dir == 0 || Math.abs(row_dir) == Math.abs(col_dir)) { continue;}
-        
-        byte col_dest = (byte)(callee.getCol() + col_dir); 
-        byte row_dest = (byte)(callee.getRow() + row_dir);
-        if ( col_dest >= 0 && col_dest <= 7 && row_dest >= 0 && row_dest <= 7) {
-
-          if (pieceFound == true) {
-            if (brd.getCells()[col_dest][row_dest].getPiece() == null) { continue; }
-            else if (brd.getCells()[col_dest][row_dest].getPiece().getClass() == King.class
-                  && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
-
-              potPinnedPiece.setStatus(Status.PINNED);
-            }
-          } else if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
-            callee.getMoves().add(
-              new Move(Move.Type.TRANSLATE, callee.getCol(), callee.getRow(), col_dest, row_dest)
-            );
-
-          } else if (brd.getCells()[col_dest][row_dest].getPiece() != null
-                 && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
-            callee.getMoves().add(
-              new Move(Move.Type.TAKE, callee.getCol(), callee.getRow(), col_dest, row_dest)
-            );
-
-            potPinnedPiece = brd.getCells()[col_dest][row_dest].getPiece();
-            pieceFound = true;
-          } else {
-            pieceFound = false;
-            
-          }
-        }
-      }
-    }
-  }
-
   @Override
   public void calcAvalableCells(Board brd) {
-    calculateKnightMoves(brd, this);
+    moves.clear();
+
+    Piece piece = null;
+    byte col_dest, row_dest;
+    
+    for (byte col_dir = -2; col_dir <= 2; col_dir++) {
+      if (col_dir == 0) col_dir = 1;
+
+      col_dest = (byte)(col + col_dir);
+      if (col_dest < 0 || col_dest > 7) continue;
+      
+      for (byte row_dir = (col_dir % 2 == 0) ? (byte)-1 : (byte)-2, count = 0; count < 2; count++, row_dir = (byte)(0 - row_dir)) {
+        row_dest = (byte)(row + row_dir);
+        if (row_dest < 0 || row_dest > 7) continue;
+
+        piece = brd.getCells()[col_dest][row_dest].getPiece();
+
+        if (piece != null) {
+          // found an ally
+          if (piece.colour.equals(colour)) {
+            piece.setStatus(Status.GUARDED);
+
+          // found the rival king
+          } else if (piece.getClass().equals(King.class)) {
+            piece.setStatus(Status.CHECKED);
+
+          // found any other rival piece
+          } else {
+            moves.add(new Move(Move.Type.TAKE, col, row, col_dest, row_dest));
+          }
+        } else moves.add(new Move(Move.Type.TRANSLATE, col, row, col_dest, row_dest));
+      }
+    }
   }
 }

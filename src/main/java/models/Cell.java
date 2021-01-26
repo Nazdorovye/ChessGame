@@ -4,7 +4,7 @@ import javafx.scene.layout.Pane;
 
 public class Cell {
   public enum Mark { 
-    CLEAR, MOVE, SELECTED, PINNED, TAKE; 
+    CLEAR, MOVE, SELECTED, PINNED, TAKE, CASTLE; 
   
     public String getColour(boolean dark) { 
       switch (this) {
@@ -12,6 +12,7 @@ public class Cell {
         case MOVE: return "#DDDDDD";
         case SELECTED: return "#7f7f7f";
         case PINNED: return "#fc5a5a";
+        case CASTLE: return "#d0db04";
         case TAKE: return "#5afc68";
         default: return "";
       }

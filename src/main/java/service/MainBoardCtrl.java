@@ -285,6 +285,7 @@ public class MainBoardCtrl {
 
         pieceImage.fitWidthProperty().bind(topA.widthProperty());
         pieceImage.fitHeightProperty().bind(topA.widthProperty());
+        pieceImage.setMouseTransparent(false);
       }
 
       GridPane.setConstraints(pieceImage, col++, row);     
@@ -322,6 +323,7 @@ public class MainBoardCtrl {
       takenVBox.getChildren().add(visual_piece);
 
       visual_piece.fitWidthProperty().bind(takenVBox.widthProperty().subtract(0.9));
+      visual_piece.setMouseTransparent(true);
     }
   }
 

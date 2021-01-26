@@ -19,6 +19,7 @@ public class MoveMenuCtrl {
     @FXML Pane moveMenuPane;
     @FXML VBox mainVbox;
     @FXML HBox colorBox;
+    @FXML HBox colorBoxBuffer;
     @FXML Label labelW;
     @FXML Label labelB;
     @FXML HBox timerBox;
@@ -41,18 +42,35 @@ public class MoveMenuCtrl {
         AnchorPane.setTopAnchor(mainPane, .0);
         AnchorPane.setLeftAnchor(mainPane, .0);
         AnchorPane.setRightAnchor(mainPane, .0);
-
+        
         mainVbox.prefWidthProperty().bind(mainPane.widthProperty());
         mainVbox.prefHeightProperty().bind(mainPane.heightProperty());
 
-        moveTable.prefWidthProperty().bind(timerBox.widthProperty());
-        moveTable.prefHeightProperty().bind(mainPane.heightProperty().multiply(0.6));
+        colorBox.prefHeightProperty().bind(mainVbox.heightProperty().multiply(0.1));
+        timerBox.prefHeightProperty().bind(mainVbox.heightProperty().multiply(0.1));
+        buttonBox.prefHeightProperty().bind(mainVbox.heightProperty().multiply(0.1));
 
-        tableW.prefWidthProperty().bind(moveTable.widthProperty().divide(2));
-        tableB.prefWidthProperty().bind(moveTable.widthProperty().divide(2));
-        
+        labelW.prefHeightProperty().bind(colorBox.heightProperty().multiply(0.8));
+        labelW.prefWidthProperty().bind(colorBox.widthProperty().divide(2).multiply(0.921));
+
+        labelB.prefHeightProperty().bind(colorBox.heightProperty().multiply(0.8));
+        labelB.prefWidthProperty().bind(colorBox.widthProperty().divide(2).multiply(0.921));
+        colorBoxBuffer.prefWidthProperty().bind(colorBox.widthProperty().multiply(0.078));
         
 
+        scrollPane.prefHeightProperty().bind(mainVbox.heightProperty().multiply(0.6));
+        scrollPane.prefWidthProperty().bind(mainVbox.widthProperty().subtract(20));
+
+        scrollApane.prefHeightProperty().bind(scrollPane.heightProperty());
+        scrollApane.prefWidthProperty().bind(scrollPane.widthProperty());
+
+        moveTable.prefWidthProperty().bind(scrollApane.widthProperty().subtract(10));
+        moveTable.prefHeightProperty().bind(scrollApane.heightProperty().subtract(10));
+
+
+        columnNr.prefWidthProperty().bind(scrollPane.widthProperty().multiply(0.1));
+        tableW.prefWidthProperty().bind(scrollPane.widthProperty().subtract(columnNr.widthProperty()).divide(2).subtract(10));
+        tableB.prefWidthProperty().bind(tableW.widthProperty());   
     }
 
     public void onClickDrawButton(EventHandler<? super MouseEvent> value) {

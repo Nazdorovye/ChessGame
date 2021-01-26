@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" prefHeight="680.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MainMenuCtrl">
+<Pane fx:id="root" prefHeight="680.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MainMenuCtrl">
    <children>
       <TabPane fx:id="tabPane" prefHeight="680.0" prefWidth="468.0" stylesheets="@tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="150.0" tabMinWidth="150.0">
          <tabs>
@@ -24,7 +24,7 @@
                                     <TextArea editable="false" prefHeight="78.0" prefWidth="408.0" text="  &#10;  A game for two players on this computer.&#10;  The players pass the turn to each other themselves.&#10;" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                  </children>
                               </AnchorPane>
-                              <Button fx:id="startHSBtn" mnemonicParsing="false" prefHeight="45.0" prefWidth="109.0" style="-fx-background-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Start">
+                              <Button fx:id="startHSBtn" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: #cc9966; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Start">
                                  <font>
                                     <Font name="Tw Cen MT Bold" size="30.0" />
                                  </font></Button>

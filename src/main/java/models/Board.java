@@ -28,6 +28,12 @@ public class Board {
     ArrayList<Move> availableMoves = piece.getMoves();
 
     Mark mrk = Mark.CLEAR;
+
+    if (piece.getPinMoves() != null && piece.getPinMoves().size() != 0) {
+      mrk = (clear) ? Mark.CLEAR : Mark.PINNED;
+      cells[piece.getPinMoves().get(0).col_from][piece.getPinMoves().get(0).row_from].markCell(mrk);
+    }
+
     for (Move move : availableMoves) {
       if (!clear) {
         switch (move.type) {
@@ -38,7 +44,7 @@ public class Board {
           default: mrk = Mark.CLEAR;
         }
       }
-
+      
       cells[move.col_dest][move.row_dest].markCell(mrk);
     }
   }
@@ -83,6 +89,8 @@ public class Board {
 
     cells[col][row].markCell(Mark.SELECTED);
     highlightMoveCells(cells[col][row].getPiece(), false);
+
+    e.consume();
   }
 
 
@@ -243,6 +251,7 @@ public class Board {
 
         pieces[idx].setCol(col);
         pieces[idx].setRow(row);
+        pieces[idx].setStatus(Status.FREE);
       }
     }
   }
@@ -269,7 +278,7 @@ public class Board {
       // temporary (remove after all pieces complete)
       if (pieces[i] == null) {
         visual_pieces[i].setMouseTransparent(true);
-      } else {
+      } else if (!pieces[i].getStatus().taken()) {
         visual_pieces[i].setMouseTransparent(!pieces[i].colour.equals(colour));
       }
     }

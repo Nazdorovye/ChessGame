@@ -6,6 +6,7 @@ import service.Move.Type;
 
 public class King extends Piece {
   private Piece checkedPiece;
+  public boolean moved = false;
 
   public King(byte visualIdx, Colour colour, byte col, byte row) {
     super(visualIdx, colour, col, row);
@@ -36,10 +37,22 @@ public class King extends Piece {
 
     Piece piece = null;
     boolean canMove = true;
+    
+    // get rook indices (black): 0, 7; (white):24, 31
+    int aRookIdx = (colour.black()) ? 0 : 24;
+    Rook rookA = (Rook)brd.getPieces()[aRookIdx];    
+    Rook rookH = (Rook)brd.getPieces()[aRookIdx + 7];    
+
+    int horSpan = (moved) ? 1 : 2; // horizontal span to (check castling cells)
+    boolean cstlA = rookA.castle && !moved;
+    boolean cstlH = rookH.castle && !moved;
 
     /* iteratively check every cell around king */
-    for (byte col_dest = (byte)(col - 1); col_dest <= col + 1; col_dest++) {
-      for (byte row_dest = (byte)(row - 1); row_dest <= row + 1; row_dest++) {
+    
+    for (byte row_dest = (byte)(row - 1); row_dest <= row + 1; row_dest++) {
+      for (byte col_dest = (byte)(col - horSpan); col_dest <= col + horSpan; col_dest++) {
+        if (Math.abs(col_dest) == 2 && row_dest != row) 
+          continue; 
 
         if (col_dest == col && row_dest == row) {
           continue; // no move in place
@@ -51,18 +64,18 @@ public class King extends Piece {
         piece = brd.getCells()[col_dest][row_dest].getPiece();
         if (piece == null) {
 
-          for (Piece _piece : brd.getPieces()) {
+          for (Piece rival_piece : brd.getPieces()) {
             if (!canMove) break;
-            if (_piece == null || _piece.colour.equals(colour)) continue;
+            if (rival_piece == null || rival_piece.colour.equals(colour)) continue;
 
-            for (Move move : _piece.moves) {
-              if (move.col_dest == col_dest && move.row_dest == row_dest) {
+            for (Move move : rival_piece.moves) {
+              if (move.col_dest == col_dest && move.row_dest == row_dest && !moved) {
                 if (move.type.checked_dummy()) canMove = false; // cell covered by rival piece
 
-                if (!_piece.getClass().equals(Pawn.class)) canMove = false;
+                if (!rival_piece.getClass().equals(Pawn.class)) canMove = false;
 
-                if (_piece.getClass().equals(King.class)) {
-                  _piece.getMoves().remove(move); // remove this move from another king
+                if (rival_piece.getClass().equals(King.class)) {
+                  rival_piece.getMoves().remove(move); // remove this move from another king
                 }
 
                 break;
@@ -83,16 +96,29 @@ public class King extends Piece {
           }
         }
 
-        if (canMove) {
+        if (row_dest == row && !moved && !canMove) {
+            cstlA = false;
+            cstlH = false;
+        }
+
+        if (canMove && col - col_dest == Math.abs(1)) {
           moves.add(new Move(Type.TRANSLATE, col, row, col_dest, row_dest));
         }
 
         canMove = true; // reset for next cell
       }
     }
+
+    if (cstlA && rookA.castle) {
+      moves.add(new Move(Type.CASTLE, col, row, (byte)2, row));
+    }
+    if (cstlH && rookH.castle) {
+      moves.add(new Move(Type.CASTLE, col, row, (byte)6, row));
+    }
   }
 
   @Override
   public void recalcCheckedMoves(Board brd) {
+    // nothing here
   }
 }

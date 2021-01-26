@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import service.Colour;
 import service.Move;
 public class Bishop extends Piece {
+
   public Bishop(byte visualIdx, Colour colour, byte col, byte row) {
     super(visualIdx, colour, col, row);
   }

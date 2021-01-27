@@ -1,6 +1,7 @@
 package service;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,7 +21,6 @@ public class Main extends Application {
   private Node gameMenu;
   private Node transMenu;
   private Game game;
-
 
   public void startHotSeat(MouseEvent e) {
     if (!e.isPrimaryButtonDown()) return;
@@ -87,8 +87,17 @@ public class Main extends Application {
     stage.minHeightProperty().set(720.);
     stage.show();
 
+    boardCtrl.getAspectPane().setOnMouseMoved(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent arg0) {
+          if(arg0.getEventType() == MouseEvent.MOUSE_MOVED){
+              game.setMouseCoords(arg0.getSceneX(), arg0.getSceneY());
+          }  
+      }
+    });
+
     swapMenuPanel(mainMenu); // set side panel to main menu
-    game = new Game(boardCtrl, transMenu);
+    game = new Game(boardCtrl, transMenuCtrl, transMenu);
   }
 
   public static void main(String[] args) {

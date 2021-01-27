@@ -1,0 +1,1 @@
+java -jar --module-path="%PATH_TO_FX%" --add-modules=javafx.controls,javafx.graphics,javafx.fxml  ChessGame.jar

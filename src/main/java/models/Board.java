@@ -224,8 +224,13 @@ public class Board {
 
   public void recalcMoves() {
     for (Piece piece : pieces) {
+      if (piece == null) continue;
       if (!piece.status.taken()) piece.forceStatus(Status.FREE);
       piece.getPinMoves().clear();
+    }
+
+    for (Piece piece : pieces) {
+      if (piece == null) continue;
       piece.calcAvalableCells(this);
     }
 
@@ -234,17 +239,20 @@ public class Board {
 
     if (pieces[4].getStatus().checked()) {
       for (byte idx = 0; idx < 16; idx++) {
+        if (pieces[idx] == null) continue;
         pieces[idx].recalcCheckedMoves(this);
       }
     }
 
     if (pieces[28].getStatus().checked()) {
       for (byte idx = 16; idx < 32; idx++) {
+        if (pieces[idx] == null) continue;
         pieces[idx].recalcCheckedMoves(this);
       }
     }
 
     for (Piece piece : pieces) {
+      if (piece == null) continue;
       if (piece.getStatus().pinned()) 
         piece.recalcPinnedMoves(this);
     }

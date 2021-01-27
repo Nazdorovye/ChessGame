@@ -7,18 +7,20 @@ import javafx.scene.layout.Pane;
 
 public class PawnTransMenuCtrl {
 
-  @FXML Pane mainPawnPane;
-  @FXML GridPane gridP;
+  @FXML private Pane mainPiecePane;
+  @FXML private GridPane gridP;
 
 
   @FXML private void initialize(){
 
-    AnchorPane.setBottomAnchor(mainPawnPane, .0);
-    AnchorPane.setTopAnchor(mainPawnPane, .0);
-    AnchorPane.setLeftAnchor(mainPawnPane, .0);
-    AnchorPane.setRightAnchor(mainPawnPane, .0);
+    AnchorPane.setBottomAnchor(mainPiecePane, 5.);
+    AnchorPane.setTopAnchor(mainPiecePane, 5.);
+    AnchorPane.setLeftAnchor(mainPiecePane, 5.);
+    AnchorPane.setRightAnchor(mainPiecePane, 5.);
 
-    gridP.prefWidthProperty().bind(mainPawnPane.widthProperty());
-    gridP.prefHeightProperty().bind(mainPawnPane.heightProperty());
+    gridP.prefWidthProperty().bind(mainPiecePane.widthProperty().subtract(10));
+    gridP.prefHeightProperty().bind(mainPiecePane.heightProperty().subtract(10));
   }
+
+  public GridPane getGridPane() { return gridP; }
 }

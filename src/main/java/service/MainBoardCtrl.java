@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -284,6 +285,8 @@ public class MainBoardCtrl {
   
   public void setAllPiecesOnBoard() {
     ImageView[] pieceBuf = getPieceImages();
+    Image pnW = new Image(getClass().getResource("Chess_plt60.png").toString());
+    Image pnB = new Image(getClass().getResource("Chess_pdt60.png").toString());
 
     int row = 0;
     int col = 0;
@@ -297,7 +300,10 @@ public class MainBoardCtrl {
         pieceImage.setMouseTransparent(false);
       }
 
-      GridPane.setConstraints(pieceImage, col++, row);     
+      GridPane.setConstraints(pieceImage, col++, row);  
+
+      if (row == 1) pieceImage.setImage(pnB);
+      if (row == 6) pieceImage.setImage(pnW);
 
       if (col > 7) {
         col = 0;

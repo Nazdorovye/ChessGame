@@ -59,7 +59,7 @@ public class Piece {
     ArrayList<Move> new_moves = new ArrayList<Move>(); // list to store valid moves
     
     // Define ally king with polymorphic cast Piece->King
-    King king = (colour.white()) ? (King)brd.getPieces()[27] : (King)brd.getPieces()[3]; 
+    King king = (colour.white()) ? (King)brd.getPieces()[28] : (King)brd.getPieces()[4]; 
     Piece piece = king.getCheckedPiece(); // piece that checked ally king
 
     for (Move move : moves) {
@@ -94,15 +94,17 @@ public class Piece {
 
   public void setPinned(ArrayList<Move> pinMoves) {
     if (pinMoves != null) {
-      status = status.equals(Status.GUARDED) ? Status.PINGUARD : Status.PINNED;
+      setStatus(status.equals(Status.GUARDED) ? Status.PINGUARD : Status.PINNED);
       this.pinMoves.addAll(pinMoves);
     } else {
       this.pinMoves.clear();
-      status = status.equals(Status.PINGUARD) ? Status.GUARDED : Status.FREE;
+      setStatus(status.equals(Status.PINGUARD) ? Status.GUARDED : Status.FREE);
     }
   }
 
   public void setStatus(Status status) {
+    if (this.status.checked()) return;
+
     switch (status) {
       case GUARDED:
         this.status = this.status.pinned() ? Status.PINGUARD : Status.GUARDED;
@@ -120,7 +122,6 @@ public class Piece {
         break;
 
       default:
-        if (this.status.checked()) break;
         this.status = status;
     }
   }

@@ -125,7 +125,8 @@ public class Move {
 
     // special pawn case for transform
     if (c_dest.getPiece().getClass().equals(Pawn.class) && (row_dest == 0 || row_dest == 7)) {
-      return true;
+      Pawn pawn = (Pawn)c_dest.getPiece();
+      if (pawn.isPawn()) return true;
     }
 
     return false;

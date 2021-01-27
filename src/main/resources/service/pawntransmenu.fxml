@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<Pane fx:id="mainPawnP" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #fff4c2; -fx-border-color: #4a3728; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="mainPiecePane" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #fff4c2; -fx-border-color: #4a3728; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.PawnTransMenuCtrl">
    <children>
       <GridPane fx:id="gridP" gridLinesVisible="true" layoutX="3.0" layoutY="3.0" prefHeight="155.0" prefWidth="155.0">
         <columnConstraints>

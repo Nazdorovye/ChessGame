@@ -48,9 +48,11 @@ public class Game {
   
   public void reset() {
     setTurnState(TurnState.SELECT_PIECE);
+    playerTurn = Colour.WHITES;
     gameState = GameState.MENU;
     gameBoard.setAllPiecesTransparent();
     boardCtrl.setAllPiecesOnTaken();
+    gameBoard.setCellsTransparency(true);
   }
 
   public void start(GameState gameState) {
@@ -62,8 +64,8 @@ public class Game {
       case HOTSEAT:        
         setTurnState(TurnState.SELECT_PIECE);
         boardCtrl.setAllPiecesOnBoard();
-        gameBoard.switchTransparency(playerTurn);
         gameBoard.resetBoard();
+        gameBoard.switchTransparency(playerTurn);
 
         break;
       default:
@@ -72,15 +74,7 @@ public class Game {
 
   public void mate() {
     main.swapMenuPanel(null);
-    finish();
-  }
-
-  public void finish() {
-    this.gameState = GameState.MENU;
-
-    boardCtrl.setAllPiecesOnTaken();
-    gameBoard.setAllPiecesTransparent();
-    gameBoard.setCellsTransparency(true);
+    reset();
   }
 
   public void showChooseMenu(boolean white, EventHandler<? super MouseEvent> handler) {

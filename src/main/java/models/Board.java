@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import models.Cell.Mark;
+import models.Pawn.Converted;
 import models.Piece.Status;
 
 import service.Colour;
@@ -138,17 +139,37 @@ public class Board {
 
     cells[nowSelected.col][nowSelected.row].markCell(Mark.CLEAR);
     highlightMoveCells(cells[nowSelected.col][nowSelected.row].getPiece(), true);
+    boolean convertPawn = false;
     
     try {
-      foundMove.execute(this, game.boardCtrl, visual_pieces);
+      convertPawn = foundMove.execute(this, game.boardCtrl, visual_pieces);
     } catch (Exception exc) {
       System.out.printf("OnCellMouseDown (Cells[%d][%d]) exception {\n%s}\n", 
           col, row, exc.getMessage());
+    } 
+
+    if (convertPawn) {
+      game.showChooseMenu(cells[nowSelected.col][nowSelected.row].getPiece().colour.white(), this::OnSelectMouseDown);
+      return;
     }
 
-    game.setNextPlayer();    
-
+    game.setNextPlayer();
     nowSelected = null;
+  }
+
+  public void OnSelectMouseDown(MouseEvent e) {
+    ImageView clicked = (ImageView)e.getSource();
+    Pawn pawn = (Pawn)nowSelected;
+
+    visual_pieces[nowSelected.visualIdx].imageProperty().set(clicked.imageProperty().get());
+    if (GridPane.getColumnIndex(clicked) == 0 && GridPane.getRowIndex(clicked) == 0) pawn.setConverted(Converted.ROOK);
+    if (GridPane.getColumnIndex(clicked) == 1 && GridPane.getRowIndex(clicked) == 0) pawn.setConverted(Converted.BISHOP);
+    if (GridPane.getColumnIndex(clicked) == 0 && GridPane.getRowIndex(clicked) == 1) pawn.setConverted(Converted.KNIGHT);
+    if (GridPane.getColumnIndex(clicked) == 1 && GridPane.getRowIndex(clicked) == 1) pawn.setConverted(Converted.QUEEN);
+
+    game.setNextPlayer();
+    nowSelected = null;
+    game.hideChooseMenu();
   }
 
   public void setPieces() {

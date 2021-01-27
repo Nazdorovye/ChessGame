@@ -69,7 +69,7 @@ public class King extends Piece {
             if (rival_piece == null || rival_piece.colour.equals(colour)) continue;
 
             for (Move move : rival_piece.moves) {
-              if (move.col_dest == col_dest && move.row_dest == row_dest && !moved) {
+              if (move.col_dest == col_dest && move.row_dest == row_dest) {
                 if (move.type.checked_dummy()) 
                 canMove = false; // cell covered by rival piece
 
@@ -108,7 +108,7 @@ public class King extends Piece {
             cstlH = false;
         }
 
-        if (canMove && col - col_dest > -2 && col - col_dest < 2) {
+        if (canMove && col - col_dest > - 2 && col - col_dest < 2) {
           moves.add(new Move(Type.TRANSLATE, col, row, col_dest, row_dest));
         }
 

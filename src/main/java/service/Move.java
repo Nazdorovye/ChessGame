@@ -41,7 +41,7 @@ public class Move {
     this.col_dest = col_dest;
   }
 
-  public void execute(Board brd, MainBoardCtrl brdCtrl, ImageView[] vPieces) throws Exception {
+  public boolean execute(Board brd, MainBoardCtrl brdCtrl, ImageView[] vPieces) throws Exception {
     String excAccum = "";
     
     /* null argument reference exception */
@@ -89,7 +89,7 @@ public class Move {
           break;
         
         case CHECKED_DUMMY:
-          return; // for king calc only
+          return false; // for king calc only
 
         default:
           break;         
@@ -124,8 +124,10 @@ public class Move {
     }
 
     // special pawn case for transform
-    if (c_dest.getPiece().getClass().equals(Pawn.class)) {
-      Pawn pawn = (Pawn)c_dest.getPiece();
+    if (c_dest.getPiece().getClass().equals(Pawn.class) && (row_dest == 0 || row_dest == 7)) {
+      return true;
     }
+
+    return false;
   }
 }

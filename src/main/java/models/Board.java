@@ -265,8 +265,14 @@ public class Board {
           break;
         }
       }
-    }
 
+      if (game.getMate()) {
+        game.mate();
+        return;
+      }
+    } 
+    
+    game.setMate(true);
     if (pieces[28].getStatus().checked() && !pieces[28].getCanMove()) {
       for (byte idx = 16; idx < 32; idx++) {
         if (pieces[idx].getCanMove()) {
@@ -280,22 +286,31 @@ public class Board {
         return;
       }
     }
+    
+    game.setMate(false);
   }
 
   public void resetBoard() {
     byte idx = 0;
-    for (byte row = 0; row < 8; row++) {
-      if (row == 2) row = 6;
-      
-      for (byte col = 0; col < 8; col++, idx++) {
+    for (byte row = 0; row < 8; row++) {      
+      for (byte col = 0; col < 8; col++) {
         cells[col][row].resetEnPassant();
-        cells[col][row].setPiece(pieces[idx]);
 
-        if (pieces[idx] == null) continue;
+        if (row > 1 && row < 6) cells[col][row].setPiece(null);
+        else {
+          cells[col][row].setPiece(pieces[idx]);
 
-        pieces[idx].setCol(col);
-        pieces[idx].setRow(row);
-        pieces[idx].setStatus(Status.FREE);
+          pieces[idx].setCol(col);
+          pieces[idx].setRow(row);
+          pieces[idx].forceStatus(Status.FREE);
+
+          if (pieces[idx].getClass().equals(Pawn.class)) {
+            Pawn pawn = (Pawn)pieces[idx];
+            pawn.setConverted(Converted.PAWN);
+          }
+
+          idx++;
+        }
       }
     }
 

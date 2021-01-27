@@ -280,6 +280,7 @@ public class MainBoardCtrl {
 
     chooserPane.prefHeightProperty().bind(aspect.heightProperty().multiply(0.222));
     chooserPane.prefWidthProperty().bind(chooserPane.heightProperty());
+    chooserPane.setMouseTransparent(true);
   }
 
   

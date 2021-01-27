@@ -38,9 +38,52 @@ public class Main extends Application {
     game.start(GameState.HOTSEAT);
   }
 
+  public void gameGiveUpClick(MouseEvent e) {
+    if (!e.isPrimaryButtonDown()) return;  
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, String.format("%s: Already giving up?", 
+        game.getNextPlayer().toString()), 
+        ButtonType.YES, ButtonType.NO);
+    
+    ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+    if (ButtonType.NO.equals(result)) return;
+
+    alert = new Alert(Alert.AlertType.INFORMATION, String.format("%s WON!", 
+        game.getNextPlayer().toStringRev()), 
+        ButtonType.OK);
+
+    alert.showAndWait();
+
+    swapMenuPanel(mainMenu);
+    game.finish();
+  }
+
+  public void gameDrawClick(MouseEvent e) {
+    if (!e.isPrimaryButtonDown()) return;
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wish to draw?", 
+        ButtonType.YES, ButtonType.NO);
+    
+    ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+    if (ButtonType.NO.equals(result)) return;
+
+    swapMenuPanel(mainMenu);
+    game.finish();
+  }
+
 
   /** Removes previous side panel and adds selected one */
-  private void swapMenuPanel(Node panel) {
+  public void swapMenuPanel(Node panel) {    
+    if (panel == null) panel = mainMenu;
+
+    if (game.getMate()) {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION, String.format("%s WON!", 
+      game.getNextPlayer().toStringRev()), 
+      ButtonType.OK);
+      
+      alert.showAndWait(); 
+    }
+
     boardCtrl.getUtilPane().getChildren().clear();
     boardCtrl.getUtilPane().getChildren().add(panel);
   }
@@ -63,6 +106,8 @@ public class Main extends Application {
 
       gameMenu = loader.load();
       moveMenuCtrl = (MoveMenuCtrl)loader.getController();
+      moveMenuCtrl.onClickDrawButton(this::gameDrawClick);
+      moveMenuCtrl.onClickGiveUpButton(this::gameGiveUpClick);
 
       loader = new FXMLLoader(getClass().getResource("pawntransmenu.fxml"));
       
@@ -96,8 +141,8 @@ public class Main extends Application {
       }
     });
 
+    game = new Game(boardCtrl, transMenuCtrl, transMenu, this);
     swapMenuPanel(mainMenu); // set side panel to main menu
-    game = new Game(boardCtrl, transMenuCtrl, transMenu);
   }
 
   public static void main(String[] args) {

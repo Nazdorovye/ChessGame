@@ -32,6 +32,7 @@ public class Pawn extends Piece {
 
     if (conv.pawn()) epsm = 0;
   }
+  public Converted getConverted() { return conv; }
   public boolean isPawn() { return conv.pawn(); }
 
   /**
@@ -133,7 +134,7 @@ public class Pawn extends Piece {
     ArrayList<Move> new_moves = new ArrayList<Move>(); // list to store valid moves
     
     // Define ally king with polymorphic cast Piece->King
-    King king = (colour.white()) ? (King)brd.getPieces()[27] : (King)brd.getPieces()[3]; 
+    King king = (colour.white()) ? (King)brd.getPieces()[28] : (King)brd.getPieces()[4]; 
     Piece piece = king.getCheckedPiece(); // piece that checked ally king
 
     // iterate through all previously calculated moves

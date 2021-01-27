@@ -7,10 +7,14 @@ public class Queen extends Piece {
     super(visualIdx, colour, col, row);
   }
 
+  public static void calcQueenMoves(Board brd, Piece callee) {
+    Bishop.calculateDiagonalMoves(brd, callee);
+    Rook.calculateLeveledMoves(brd, callee);
+  }
+
   @Override
   public void calcAvalableCells(Board brd) {
     moves.clear();
-    Bishop.calculateDiagonalMoves(brd, this);
-    Rook.calculateLeveledMoves(brd, this);
+    calcQueenMoves(brd, this);
   }
 }

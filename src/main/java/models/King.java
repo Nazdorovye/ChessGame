@@ -72,9 +72,10 @@ public class King extends Piece {
               if (move.col_dest == col_dest && move.row_dest == row_dest && !moved) {
                 if (move.type.checked_dummy()) canMove = false; // cell covered by rival piece
 
-                if (!rival_piece.getClass().equals(Pawn.class)) {
-                  Pawn pawn = (Pawn)rival_piece; // check if pawn is not converted
-                  if (pawn.isPawn()) canMove = false;
+                if (!rival_piece.getClass().equals(Pawn.class)) canMove = false;
+                else {
+                  Pawn pawn = (Pawn)rival_piece;
+                  if (!pawn.isPawn()) canMove = false;
                 }
 
                 if (rival_piece.getClass().equals(King.class)) {

@@ -116,10 +116,12 @@ public class Game {
     }
 
     boardCtrl.getChooserPane().relocate(mouseX, Y);
+    boardCtrl.getChooserPane().setMouseTransparent(false);
   }
 
   public void hideChooseMenu() {
     boardCtrl.getChooserPane().getChildren().clear();
+    boardCtrl.getChooserPane().setMouseTransparent(true);
   }
 
   public Game(MainBoardCtrl boardCtrl, PawnTransMenuCtrl transCtrl, Node transMenu, Main main) {

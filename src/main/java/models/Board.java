@@ -220,8 +220,6 @@ public class Board {
 
       dark = !dark;
     }
-
-    recalcMoves();
   }
 
   public void recalcMoves() {
@@ -236,17 +234,17 @@ public class Board {
       piece.calcAvalableCells(this);
     }
 
-    pieces[3].calcAvalableCells(this);
-    pieces[27].calcAvalableCells(this);
+    pieces[4].calcAvalableCells(this);
+    pieces[28].calcAvalableCells(this);
 
-    if (pieces[3].getStatus().checked()) {
+    if (pieces[4].getStatus().checked()) {
       for (byte idx = 0; idx < 16; idx++) {
         if (pieces[idx] == null) continue;
         pieces[idx].recalcCheckedMoves(this);
       }
     }
 
-    if (pieces[27].getStatus().checked()) {
+    if (pieces[28].getStatus().checked()) {
       for (byte idx = 16; idx < 32; idx++) {
         if (pieces[idx] == null) continue;
         pieces[idx].recalcCheckedMoves(this);
@@ -257,6 +255,30 @@ public class Board {
       if (piece == null) continue;
       if (piece.getStatus().pinned()) 
         piece.recalcPinnedMoves(this);
+    }
+
+    game.setMate(true);
+    if (pieces[4].getStatus().checked() && !pieces[4].getCanMove()) {
+      for (byte idx = 0; idx < 16; idx++) {
+        if (pieces[idx].getCanMove()) {
+          game.setMate(false);
+          break;
+        }
+      }
+    }
+
+    if (pieces[28].getStatus().checked() && !pieces[28].getCanMove()) {
+      for (byte idx = 16; idx < 32; idx++) {
+        if (pieces[idx].getCanMove()) {
+          game.setMate(false);
+          break;
+        }
+      }
+
+      if (game.getMate()) {
+        game.mate();
+        return;
+      }
     }
   }
 
@@ -276,6 +298,8 @@ public class Board {
         pieces[idx].setStatus(Status.FREE);
       }
     }
+
+    recalcMoves();
   }
 
   public Board(Game game, MainBoardCtrl boardCtrl) {

@@ -51,7 +51,7 @@ public class King extends Piece {
     
     for (byte row_dest = (byte)(row - 1); row_dest <= row + 1; row_dest++) {
       for (byte col_dest = (byte)(col - horSpan); col_dest <= col + horSpan; col_dest++) {
-        if (Math.abs(col_dest) == 2 && row_dest != row) 
+        if ((col_dest == col + 2 || col_dest == col - 2) && row_dest != row) 
           continue; 
 
         if (col_dest == col && row_dest == row) {
@@ -70,12 +70,15 @@ public class King extends Piece {
 
             for (Move move : rival_piece.moves) {
               if (move.col_dest == col_dest && move.row_dest == row_dest && !moved) {
-                if (move.type.checked_dummy()) canMove = false; // cell covered by rival piece
+                if (move.type.checked_dummy()) 
+                canMove = false; // cell covered by rival piece
 
-                if (!rival_piece.getClass().equals(Pawn.class)) canMove = false;
+                if (!rival_piece.getClass().equals(Pawn.class)) 
+                  canMove = false;
                 else {
                   Pawn pawn = (Pawn)rival_piece;
-                  if (!pawn.isPawn()) canMove = false;
+                  if (!pawn.isPawn()) 
+                    canMove = false;
                 }
 
                 if (rival_piece.getClass().equals(King.class)) {
@@ -105,7 +108,7 @@ public class King extends Piece {
             cstlH = false;
         }
 
-        if (canMove && col - col_dest == Math.abs(1)) {
+        if (canMove && col - col_dest > -2 && col - col_dest < 2) {
           moves.add(new Move(Type.TRANSLATE, col, row, col_dest, row_dest));
         }
 

@@ -25,6 +25,7 @@ public class MainBoardCtrl {
       final double w = scene.getWidth();
       final double h = scene.getHeight();
   
+      // keep aspect ratio for 'aspect' pane
       if (w < h * aRatio) {
         aspect.setPrefWidth(w);
         aspect.setPrefHeight(w / aRatio);
@@ -33,6 +34,7 @@ public class MainBoardCtrl {
         aspect.setPrefHeight(h);
       }
   
+      // keep 'aspect' pane in the window center
       aspect.setLayoutX((w - aspect.getPrefWidth()) / 2);
       aspect.setLayoutY((h - aspect.getPrefHeight()) / 2);
     }
@@ -273,6 +275,7 @@ public class MainBoardCtrl {
     right7.prefHeightProperty().bind(topA.widthProperty());
     right8.prefHeightProperty().bind(topA.widthProperty());
 
+    // chooser pane for pawn transform
     AnchorPane.setBottomAnchor(chooserPane, .0);
     AnchorPane.setTopAnchor(chooserPane, .0);
     AnchorPane.setLeftAnchor(chooserPane, .0);
@@ -280,12 +283,14 @@ public class MainBoardCtrl {
 
     chooserPane.prefHeightProperty().bind(aspect.heightProperty().multiply(0.222));
     chooserPane.prefWidthProperty().bind(chooserPane.heightProperty());
-    chooserPane.setMouseTransparent(true);
+    chooserPane.setMouseTransparent(true); // 
   }
 
   
   public void setAllPiecesOnBoard() {
     ImageView[] pieceBuf = getPieceImages();
+
+    // set defaults in case pawn was transformed
     Image pnW = new Image(getClass().getResource("Chess_plt60.png").toString());
     Image pnB = new Image(getClass().getResource("Chess_pdt60.png").toString());
 
@@ -298,9 +303,9 @@ public class MainBoardCtrl {
 
         pieceImage.fitWidthProperty().bind(topA.widthProperty());
         pieceImage.fitHeightProperty().bind(topA.widthProperty());
-        pieceImage.setMouseTransparent(false);
+        pieceImage.setMouseTransparent(false); // controlled in game logics
       }
-
+      
       GridPane.setConstraints(pieceImage, col++, row);  
 
       if (row == 1) pieceImage.setImage(pnB);

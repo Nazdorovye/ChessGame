@@ -18,13 +18,13 @@ public class Bishop extends Piece {
     boolean pieceFound = false;
     boolean kingFound = false;
     Piece potPinnedPiece = null;
-    ArrayList<Move> colCheckedMoves = new ArrayList<Move>();
+    ArrayList<Move> collectedMoves = new ArrayList<Move>();
 
     for (byte col_dir = -1; col_dir <= 1; col_dir += 2) {
       for (byte row_dir = -1; row_dir <= 1; row_dir += 2) {
         pieceFound = false;
         kingFound = false;
-        colCheckedMoves.clear();
+        collectedMoves.clear();
 
         for (byte col_dest = (byte)(callee.getCol() + col_dir), 
                   row_dest = (byte)(callee.getRow() + row_dir);
@@ -43,7 +43,7 @@ public class Bishop extends Piece {
           if (!pieceFound) {
             // no first piece found, accumulate moves
             if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
-              colCheckedMoves.add(
+              collectedMoves.add(
                 new Move(Move.Type.TRANSLATE, callee.getCol(), callee.getRow(), col_dest, row_dest)
               );
 
@@ -54,18 +54,19 @@ public class Bishop extends Piece {
 
             // first found piece is rival king 
             } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)) {
+              // polymorphic cast
               King king = (King)brd.getCells()[col_dest][row_dest].getPiece();
               king.assignCheckedPiece(callee);
 
-              for (Move move : colCheckedMoves) move.type = Type.CHECKED;
+              for (Move move : collectedMoves) move.type = Type.CHECKED;
 
               kingFound = true;
               continue;
 
             // first found piece is rival non-king 
             } else {
-              callee.getMoves().addAll(colCheckedMoves); // anyways valid moves before piece
-              colCheckedMoves.clear(); // clear to collect pinned moves after piece
+              callee.getMoves().addAll(collectedMoves); // anyways valid moves before piece
+              collectedMoves.clear(); // clear to collect pinned moves after piece
 
               callee.getMoves().add(
                 new Move(Move.Type.TAKE, callee.getCol(), callee.getRow(), col_dest, row_dest)
@@ -80,7 +81,7 @@ public class Bishop extends Piece {
 
             // empty cell after rival piece, no use
             if (brd.getCells()[col_dest][row_dest].getPiece() == null) {
-              colCheckedMoves.add(
+              collectedMoves.add(
                   new Move(Move.Type.CHECKED_DUMMY, callee.getCol(), callee.getRow(), col_dest, row_dest)
               );
 
@@ -88,7 +89,7 @@ public class Bishop extends Piece {
             } else if (brd.getCells()[col_dest][row_dest].getPiece().getClass().equals(King.class)
                 && !brd.getCells()[col_dest][row_dest].getPiece().colour.equals(callee.colour)) {
                 
-              potPinnedPiece.setPinned(colCheckedMoves);
+              potPinnedPiece.setPinned(collectedMoves);
               break;
 
             // any non-king piece
@@ -98,7 +99,7 @@ public class Bishop extends Piece {
           }
         }
 
-        callee.moves.addAll(colCheckedMoves);
+        callee.moves.addAll(collectedMoves);
       }
     }
   }

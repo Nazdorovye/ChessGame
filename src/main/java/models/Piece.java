@@ -6,7 +6,7 @@ import service.Colour;
 import service.Move;
 
 public class Piece {
-  public enum Status { 
+  public enum Status {
     FREE, PINNED, CHECKED, TAKEN, GUARDED, PINGUARD; 
 
     public boolean pinned() { return this.equals(PINNED) || this.equals(PINGUARD); }
@@ -40,6 +40,7 @@ public class Piece {
 
   public void forceStatus(Status status) { this.status = status; }
   
+  // overriden
   public void calcAvalableCells(Board board) {}
 
   protected void recalcPinnedMoves(Board brd) {

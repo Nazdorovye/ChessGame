@@ -133,19 +133,23 @@ public class Main extends Application {
     stage.minHeightProperty().set(720.);
     stage.show();
 
+    // for chooser pane coordinates
     boardCtrl.getAspectPane().setOnMouseMoved(new EventHandler<MouseEvent>() {
+
       @Override
       public void handle(MouseEvent arg0) {
-          if(arg0.getEventType() == MouseEvent.MOUSE_MOVED){
-              game.setMouseCoords(arg0.getSceneX(), arg0.getSceneY());
-          }  
+        if(arg0.getEventType() == MouseEvent.MOUSE_MOVED){
+          game.setMouseCoords(arg0.getSceneX(), arg0.getSceneY());
+        }  
       }
+
     });
 
     game = new Game(boardCtrl, transMenuCtrl, transMenu, this);
     swapMenuPanel(mainMenu); // set side panel to main menu
   }
 
+  // entry point
   public static void main(String[] args) {
     launch();
   }

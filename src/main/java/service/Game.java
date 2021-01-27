@@ -20,6 +20,7 @@ public class Game {
     public boolean boardTransparent() { return this.equals(SELECT_PIECE) ? true : false; }
   }
 
+  public final Main main;
   public final MainBoardCtrl boardCtrl;
   public final PawnTransMenuCtrl transCtrl;
   private Board gameBoard;
@@ -28,6 +29,7 @@ public class Game {
   private TurnState turnState;
   private Colour playerTurn;
   private double mouseX, mouseY;
+  private boolean mate;
 
   public void setNextPlayer() {
     playerTurn = Colour.values()[1 - playerTurn.ordinal()];
@@ -52,6 +54,7 @@ public class Game {
   }
 
   public void start(GameState gameState) {
+    mate = false;
     this.gameState = gameState;
     playerTurn = Colour.WHITES;
 
@@ -64,8 +67,20 @@ public class Game {
 
         break;
       default:
-    }   
+    }
+  }
 
+  public void mate() {
+    main.swapMenuPanel(null);
+    finish();
+  }
+
+  public void finish() {
+    this.gameState = GameState.MENU;
+
+    boardCtrl.setAllPiecesOnTaken();
+    gameBoard.setAllPiecesTransparent();
+    gameBoard.setCellsTransparency(true);
   }
 
   public void showChooseMenu(boolean white, EventHandler<? super MouseEvent> handler) {
@@ -113,15 +128,21 @@ public class Game {
     boardCtrl.getChooserPane().getChildren().clear();
   }
 
-  public Game(MainBoardCtrl boardCtrl, PawnTransMenuCtrl transCtrl, Node transMenu) {
+  public Game(MainBoardCtrl boardCtrl, PawnTransMenuCtrl transCtrl, Node transMenu, Main main) {
+    this.main = main;
     this.boardCtrl = boardCtrl;
     this.transCtrl = transCtrl;
     this.transMenu = transMenu;
+    this.playerTurn = Colour.WHITES;
+    this.mate = false;
     gameBoard = new Board(this, boardCtrl);
     reset();
   }
 
   public Board getGameBoard() { return gameBoard; }
+
+  public void setMate(boolean mate) { this.mate = mate; }
+  public boolean getMate() { return mate; }
 
   public Colour getNextPlayer() { return playerTurn; }
   public GridPane getGridPane() { return boardCtrl.getGridPane(); }

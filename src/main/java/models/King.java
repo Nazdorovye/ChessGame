@@ -95,7 +95,8 @@ public class King extends Piece {
           if (piece.colour.equals(colour)) {
             piece.setStatus(Status.GUARDED); // guard nearby allies against rival king
             continue;
-          } else if (!piece.status.guarded()) { // if not guarded, the king can take it
+          } else if (!piece.status.guarded() && col - col_dest > - 2 && col - col_dest < 2) { 
+            // if not guarded, the king can take it
             moves.add(new Move(Type.TAKE, col, row, col_dest, row_dest));
             canMove = false; // take move already set
           } else if (piece.status.guarded()) { // if guarded, the king cannot take it

@@ -55,7 +55,7 @@ public class Main extends Application {
     alert.showAndWait();
 
     swapMenuPanel(mainMenu);
-    game.finish();
+    game.reset();
   }
 
   public void gameDrawClick(MouseEvent e) {
@@ -68,7 +68,7 @@ public class Main extends Application {
     if (ButtonType.NO.equals(result)) return;
 
     swapMenuPanel(mainMenu);
-    game.finish();
+    game.reset();
   }
 
 
@@ -81,7 +81,8 @@ public class Main extends Application {
       game.getNextPlayer().toStringRev()), 
       ButtonType.OK);
       
-      alert.showAndWait(); 
+      alert.showAndWait();
+      game.setMate(false);
     }
 
     boardCtrl.getUtilPane().getChildren().clear();

@@ -7,15 +7,32 @@ import service.Move;
 import service.Move.Type;
 
 public class Pawn extends Piece {
+  public enum Converted {
+    PAWN, ROOK, KNIGHT, BISHOP, QUEEN;
+
+    public boolean pawn() { return this.equals(PAWN); }
+  }
+
   private byte epsm = 0;
   private boolean canMove = false; // pawn real allowed moves may differ from dummy moves
+  private Converted conv;
 
   public Pawn(byte visualIdx, Colour colour, byte col, byte row) {
     super(visualIdx, colour, col, row);
+    conv = Converted.PAWN;
   }
 
   @Override
-  public boolean getCanMove() { return canMove; }
+  public boolean getCanMove() { 
+    return (conv.pawn()) ? canMove : super.getCanMove(); 
+  }
+
+  public void setConverted(Converted conv) { 
+    this.conv = conv;
+
+    if (conv.pawn()) epsm = 0;
+  }
+  public boolean isPawn() { return conv.pawn(); }
 
   /**
    * Calculates every possible move for a pawn
@@ -23,12 +40,19 @@ public class Pawn extends Piece {
    */
   @Override
   public void calcAvalableCells(Board brd) {
-
     // discard outdated moves
     moves.clear();
     canMove = false;
 
     if (status.taken()) return;
+    
+    switch (conv) {
+      case ROOK: Rook.calculateLeveledMoves(brd, this); return;
+      case KNIGHT: Knight.calcLMoves(brd, this); return;
+      case BISHOP: Bishop.calculateDiagonalMoves(brd, this); return;
+      case QUEEN: Queen.calcQueenMoves(brd, this); return;
+      case PAWN: break;
+    }
     
     // pawn direction
     byte dir = colour.direction();
@@ -101,6 +125,10 @@ public class Pawn extends Piece {
   @Override
   public void recalcCheckedMoves(Board brd) {
     if (status.taken()) return;
+    if (!conv.pawn()) {
+      super.recalcCheckedMoves(brd);
+      return;
+    }
 
     ArrayList<Move> new_moves = new ArrayList<Move>(); // list to store valid moves
     
@@ -136,8 +164,9 @@ public class Pawn extends Piece {
    *    handle canMove variable for cell highlighting
    */
   @Override
-  protected void recalcPinnedMoves(Board brd) {    
+  protected void recalcPinnedMoves(Board brd) {  
     super.recalcPinnedMoves(brd);
+    if (!conv.pawn()) return; // if converted, super method is enough
 
     canMove = false;
     

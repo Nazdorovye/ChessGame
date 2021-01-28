@@ -10,11 +10,10 @@ Vjazovcevs Stanislavs
 
 # Requirements
 
-Java 11 required just as JavaFX library
+Java 13 required just as JavaFX library
 
 ```%PATH_TO_FX%``` path variable must be set in the environment pointing to ```javafx/lib``` folder
 
 # Launching
 
 * ```run.bat```
-* ```run.sh```
